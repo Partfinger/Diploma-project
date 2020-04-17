@@ -15,8 +15,6 @@ public class DUnit : Unit
     private void Start()
     {
         output = funct.FirstTransform(input.output);
-
-        Debug.Log(output);
     }
 
     public override void Tick()

@@ -10,6 +10,6 @@ public class IndicatorText : Indicator
 
     private void Update()
     {
-        text.text = unit.output.ToString();
+        text.text = string.Format("{0:0.0}", unit.output);
     }
 }

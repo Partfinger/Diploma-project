@@ -9,12 +9,13 @@ public class Comparator : Unit
     public override void Tick()
     {
         output = input.output - another.output;
+        if (Mathf.Abs(output) < 0.0001f)
+            output = 0.0f;
     }
 
     private void Start()
     {
         output = input.output - another.output;
-        Debug.Log("1as");
     }
 
 }

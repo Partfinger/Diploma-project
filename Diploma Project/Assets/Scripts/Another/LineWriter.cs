@@ -15,7 +15,6 @@ public class LineWriter : MonoBehaviour
     private void Start()
     {
         Vector3 delta = anchor2.localPosition - anchor1.localPosition;
-        Debug.Log(delta);
         stepX = delta.x / max;
         stepY = delta.y / maxY;
         line.positionCount = max;

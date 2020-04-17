@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Source : Unit
 {
-    public float task;
-
     public override void Tick()
     {
         return;
@@ -15,15 +13,4 @@ public class Source : Unit
     {
         return false;
     }
-
-    private void Awake()
-    {
-        output = task;
-    }
-    /*
-    private void LateUpdate()
-    {
-        output = 0;
-        enabled = false;
-    }*/
 }
