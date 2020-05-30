@@ -2,31 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public struct TF
+public class TF : MonoBehaviour
 {
     public float[] numerator, denumerator, variables, variablesOld;
     [SerializeField]
     int dFactor, nFactor;
-    float dt;
+    public static float dt;
 
-    public void Awake()
+    public void ResetTF(float[] n, float[] d)
     {
-        nFactor = numerator.Length;
-        dFactor = denumerator.Length + nFactor;
-        variables = new float[dFactor];
-        dt = Time.fixedDeltaTime;
+        numerator = n;
+        denumerator = d;
+        dFactor = denumerator.Length;
+        nFactor = numerator.Length + dFactor;
+        variables = new float[nFactor];
     }
 
-    /*
-    public TF(float[] n, float[] d)
+    public void ResetTF()
     {
-        nominator = n;
-        denominator = d;
-        dFactor = denominator.Length;
-        nFactor = nominator.Length + dFactor;
+        dFactor = denumerator.Length;
+        nFactor = numerator.Length + dFactor;
         variables = new float[nFactor];
-    }*/
+    }
 
     public float FirstTransform(float input)
     {

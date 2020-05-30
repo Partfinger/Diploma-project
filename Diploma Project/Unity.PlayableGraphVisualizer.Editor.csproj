@@ -9,10 +9,10 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{1321A4D1-7833-C89A-EB0D-B24B416B645E}</ProjectGuid>
+    <ProjectGuid>{2E4DCFB5-0DE4-370A-A2E8-91D2638E4702}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <AssemblyName>Unity.PlayableGraphVisualizer.Editor</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
@@ -47,7 +47,7 @@
   <PropertyGroup>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <UnityProjectGenerator>Unity/VSTU</UnityProjectGenerator>
-    <UnityProjectType>Game:1</UnityProjectType>
+    <UnityProjectType>Editor:5</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2019.3.11f1</UnityVersion>
   </PropertyGroup>
@@ -63,59 +63,31 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Another\DUnit.cs" />
-    <Compile Include="Assets\Scripts\Another\LineWriter.cs" />
-    <Compile Include="Assets\Scripts\Another\Tuner.cs" />
-    <Compile Include="Assets\Scripts\Controllers\ControlLaw.cs" />
-    <Compile Include="Assets\Scripts\Controllers\ControllerEntity.cs" />
-    <Compile Include="Assets\Scripts\Controllers\DController.cs" />
-    <Compile Include="Assets\Scripts\Controllers\IController.cs" />
-    <Compile Include="Assets\Scripts\Controllers\PController.cs" />
-    <Compile Include="Assets\Scripts\Devices\Comparator.cs" />
-    <Compile Include="Assets\Scripts\Devices\Indicator\Indicator.cs" />
-    <Compile Include="Assets\Scripts\Devices\Indicator\IndicatorScale.cs" />
-    <Compile Include="Assets\Scripts\Devices\Indicator\IndicatorText.cs" />
-    <Compile Include="Assets\Scripts\Devices\MIK51.cs" />
-    <Compile Include="Assets\Scripts\TAY\DTF.cs" />
-    <Compile Include="Assets\Scripts\TAY\Outflow.cs" />
-    <Compile Include="Assets\Scripts\TAY\Source.cs" />
-    <Compile Include="Assets\Scripts\TAY\TF.cs" />
-    <Compile Include="Assets\Scripts\TAY\Unit.cs" />
-    <Compile Include="Assets\Scripts\UI Editor\EditorElement.cs" />
-    <Compile Include="Assets\Scripts\UI Editor\EditorObjectManager.cs" />
-    <Compile Include="Assets\Scripts\UI Editor\EditorPanel.cs" />
-    <Compile Include="Assets\Scripts\UI Editor\Panels\TFEditorPanel.cs" />
-    <Compile Include="Assets\Scripts\UI Editor\TFUI.cs" />
-    <Compile Include="Assets\Scripts\UIOld\EditorUI.cs" />
-    <Compile Include="Assets\Scripts\UIOld\FileMenu.cs" />
-    <Compile Include="Assets\Scripts\UIOld\SchemeObject.cs" />
-    <Compile Include="Assets\Scripts\UIOld\TopicSelector.cs" />
-    <Reference Include="Unity.Timeline.Editor">
-      <HintPath>P:/Projects/Diploma-project/Diploma Project/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VSCode.Editor">
-      <HintPath>P:/Projects/Diploma-project/Diploma Project/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>P:/Projects/Diploma-project/Diploma Project/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+    <Compile Include="C:\Users\Olexiy\Desktop\Нова папка\Editor\Graph\Graph.cs" />
+    <Compile Include="C:\Users\Olexiy\Desktop\Нова папка\Editor\Graph\Layouts\IGraphLayout.cs" />
+    <Compile Include="C:\Users\Olexiy\Desktop\Нова папка\Editor\Graph\Layouts\ReingoldTilford.cs" />
+    <Compile Include="C:\Users\Olexiy\Desktop\Нова папка\Editor\Graph\Node.cs" />
+    <Compile Include="C:\Users\Olexiy\Desktop\Нова папка\Editor\Graph\Renderer\DefaultGraphRenderer.cs" />
+    <Compile Include="C:\Users\Olexiy\Desktop\Нова папка\Editor\Graph\Renderer\IGraphRenderer.cs" />
+    <Compile Include="C:\Users\Olexiy\Desktop\Нова папка\Editor\PlayableGraphVisualizer.cs" />
+    <Compile Include="C:\Users\Olexiy\Desktop\Нова папка\Editor\PlayableGraphVisualizerWindow.cs" />
+    <Compile Include="C:\Users\Olexiy\Desktop\Нова папка\Editor\PlayableNodes\AnimationClipPlayableNode.cs" />
+    <Compile Include="C:\Users\Olexiy\Desktop\Нова папка\Editor\PlayableNodes\AnimationLayerMixerPlayableNode.cs" />
+    <Compile Include="C:\Users\Olexiy\Desktop\Нова папка\Editor\PlayableNodes\PlayableNode.cs" />
+    <Compile Include="C:\Users\Olexiy\Desktop\Нова папка\Editor\PlayableNodes\PlayableOutputNode.cs" />
+    <Compile Include="C:\Users\Olexiy\Desktop\Нова папка\Editor\PlayableNodes\SharedPlayableNode.cs" />
+    <None Include="C:\Users\Olexiy\Desktop\Нова папка\Editor\Unity.PlayableGraphVisualizer.Editor.asmdef" />
+    <Reference Include="UnityEditor.UI">
+      <HintPath>P:/Projects/Diploma-project/Diploma Project/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>P:/Projects/Diploma-project/Diploma Project/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Timeline">
-      <HintPath>P:/Projects/Diploma-project/Diploma Project/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+    <Reference Include="UnityEditor.TestRunner">
+      <HintPath>P:/Projects/Diploma-project/Diploma Project/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>P:/Projects/Diploma-project/Diploma Project/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Rider.Editor">
-      <HintPath>P:/Projects/Diploma-project/Diploma Project/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>P:/Projects/Diploma-project/Diploma Project/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.UI">
-      <HintPath>P:/Projects/Diploma-project/Diploma Project/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+    <Reference Include="UnityEngine.TestRunner">
+      <HintPath>P:/Projects/Diploma-project/Diploma Project/Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>P:/Unity/2019.3.11f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -293,6 +265,24 @@
     </Reference>
     <Reference Include="UnityEngine.XRModule">
       <HintPath>P:/Unity/2019.3.11f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.VR">
+      <HintPath>P:/Unity/2019.3.11f1/Editor/Data/UnityExtensions/Unity/UnityVR/Editor/UnityEditor.VR.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Graphs">
+      <HintPath>P:/Unity/2019.3.11f1/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.WindowsStandalone.Extensions">
+      <HintPath>P:/Unity/2019.3.11f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Android.Extensions">
+      <HintPath>P:/Unity/2019.3.11f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
+      <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/16.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>P:/Projects/Diploma-project/Diploma Project/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>P:/Unity/2019.3.11f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
@@ -648,6 +638,12 @@
     <Reference Include="Boo.Lang">
       <HintPath>P:/Unity/2019.3.11f1/Editor/Data/MonoBleedingEdge/lib/mono/unityscript/Boo.Lang.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Unity.PlayableGraphVisualizer.csproj">
+      <Project>{4B6ACCE9-E319-D4E6-7E72-D618A8DD3146}</Project>
+      <Name>Unity.PlayableGraphVisualizer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

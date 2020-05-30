@@ -8,7 +8,7 @@ public class Outflow : Unit
 {
     public event SimulationUpdate Step;
 
-    private void Start()
+    public void Run()
     {
         Queue<Unit> queue = new Queue<Unit>();
         List<Unit> units = new List<Unit>();
