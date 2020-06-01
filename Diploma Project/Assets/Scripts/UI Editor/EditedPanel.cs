@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class EditorPanel : MonoBehaviour
+public abstract class EditedPanel : MonoBehaviour
 {
+    public bool haveInput;
 
-    public abstract void SetParent(ref EditorElement element);
+    public SchemeObject parent;
 
     public abstract void Apply();
 

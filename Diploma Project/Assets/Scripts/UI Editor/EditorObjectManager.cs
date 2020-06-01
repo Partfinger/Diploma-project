@@ -6,21 +6,17 @@ using UnityEngine.UI;
 
 public class EditorObjectManager : MonoBehaviour
 {
-    public EditorElement[] items;
-    public GameObject[] onSchemeElements;
-    public EditorPanel[] panels;
-    List<EditorElement> elements;
-    public Transform content, container, panelEditor;
+    public TabButton[] objects;
+    public GameObject[] boardObjects, propPanels;
+    public TabGroup group;
+    public Transform content, panelBoard, panelEditor;
     public Dropdown it;
-    [SerializeField]
-    public EditorElement current;
+    public EditorPanelManager panelManager;
 
     private void Start()
     {
-        elements = new List<EditorElement>();
-        EditorElement.container = container;
-        EditorElement.panelUI = panelEditor;
-        EditorElement.manager = this;
+        group.tabButtons = new List<TabButton>();
+        TabButton.panelManager = panelManager;
     }
 
     public void AddNewObject(int index)
@@ -28,24 +24,19 @@ public class EditorObjectManager : MonoBehaviour
         if (index > 0)
         {
             index--;
-            EditorElement newElement = Instantiate(items[index], content);
-            GameObject subject = Instantiate(onSchemeElements[index], container);
-            EditorPanel panel = Instantiate(panels[index], panelEditor);
-            newElement.panel = panel;
-            panel.SetParent(ref newElement);
-            newElement.subject = subject;
-            elements.Add(newElement);
-            newElement.Init(ref subject);
-            //current = newElement;
-            //current.panel.Show();
+            TabButton newButton = Instantiate(objects[index], content);
+            newButton.group = group;
+            newButton.schemeObject.boardObject = Instantiate(boardObjects[index], panelBoard);
+            newButton.schemeObject.propPanel = Instantiate(propPanels[index], panelEditor);
+            newButton.schemeObject.propPanel.GetComponent<EditedPanel>().parent = newButton.schemeObject;
+            newButton.schemeObject.propPanel.transform.SetSiblingIndex(2);
+            group.OnTabSelected(newButton);
             it.SetValueWithoutNotify(0);
-            //current.GetComponent<Button>().Select();
         }
     }
 
-    public void Hide()
+    public void RemoveElement()
     {
-        current.panel.Hide();
-        current = null;
+        group.active.Remove();
     }
 }

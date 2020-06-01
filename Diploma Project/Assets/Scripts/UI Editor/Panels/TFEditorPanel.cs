@@ -4,42 +4,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TFEditorPanel : EditorPanel
+public class TFEditorPanel : EditedPanel
 {
-    public TFUI parent;
     public InputField num, denum;
     bool isDiscrete;
     float timeDiscrete;
 
-    public override void SetParent(ref EditorElement element)
-    {
-        parent = (TFUI)element;
-    }
-
     public override void Apply()
     {
+        TransferFunction tf = parent.boardObject.GetComponent<TransferFunction>();
         string[] strings = num.text.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-        parent.unit.funct.numerator = new float[strings.Length];
+        tf.numerator = new float[strings.Length];
         for (int i = 0; i < strings.Length; i++)
         {
-            parent.unit.funct.numerator[i] = float.Parse(strings[i]);
+            tf.numerator[i] = float.Parse(strings[i]);
         }
 
         strings = denum.text.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-        parent.unit.funct.denumerator = new float[strings.Length];
+        tf.denumerator = new float[strings.Length];
         for (int i = 0; i < strings.Length; i++)
         {
-            parent.unit.funct.denumerator[i] = float.Parse(strings[i]);
+            tf.denumerator[i] = float.Parse(strings[i]);
         }
-        parent.unit.funct.ResetTF();
+        tf.ResetTF();
         //parent.unit.input
     }
 
     public override void Show()
     {
+        TransferFunction tf = parent.boardObject.GetComponent<TransferFunction>();
         base.Show();
-        num.text = string.Join(" ", parent.unit.funct.numerator);
-        denum.text = string.Join(" ", parent.unit.funct.denumerator);
+        num.text = string.Join(" ", tf.numerator);
+        denum.text = string.Join(" ", tf.denumerator);
     }
 
 }

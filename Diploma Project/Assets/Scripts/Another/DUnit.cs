@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DUnit : Unit
 {
-    public TF funct;
+    public TransferFunction funct;
 
     public override void Tick()
     {

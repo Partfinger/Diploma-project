@@ -9,15 +9,7 @@ public class TFUI : EditorElement
 
     public override void ShowProp()
     {
-        if (manager.current != this)
-        {
-            if(manager.current)
-            {
-                manager.Hide();
-            }
-            manager.current = this;
-            panel.Show();
-        }
+
     }
 
     public override void Init(ref GameObject o)

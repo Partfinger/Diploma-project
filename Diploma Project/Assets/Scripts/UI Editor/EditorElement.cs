@@ -7,7 +7,7 @@ public abstract class EditorElement : MonoBehaviour
 {
     public Text text;
     public GameObject subject;
-    public EditorPanel panel;
+    public EditedPanel panel;
     public static EditorObjectManager manager;
     public static Transform panelUI, container;
 

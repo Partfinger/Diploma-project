@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TF : MonoBehaviour
+public class TransferFunction : MonoBehaviour
 {
     public float[] numerator, denumerator, variables, variablesOld;
     [SerializeField]
