@@ -68,6 +68,7 @@ public class EditorPanelManager : MonoBehaviour
         {
             panel.AddInput(dz);
         }
+        itIsController = false;
         dz = null;
         captured = null;
         back.SetActive(false);

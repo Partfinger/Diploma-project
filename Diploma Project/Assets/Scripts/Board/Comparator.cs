@@ -5,15 +5,18 @@ using UnityEngine;
 
 public class Comparator : Unit
 {
-    public Unit[] anothers;
-    public bool[] types;
+    public List<Unit> inputs;
+    public List<bool> types;
 
     public override void Tick()
     {
         output = 0;
-        for (int i =0; i < anothers.Length; i++)
+        for (int i =0; i < inputs.Count; i++)
         {
-            output += types[i] ? anothers[i].output : -anothers[i].output;
+            if (types[i])
+                output += inputs[i].output;
+            else
+                output -= inputs[i].output;
         }
         if (Mathf.Abs(output) < 0.0001f)
             output = 0.0f;

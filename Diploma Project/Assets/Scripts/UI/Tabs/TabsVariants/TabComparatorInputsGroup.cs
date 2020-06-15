@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class TabComparatorInputsGroup : TabGroup
 {
-    public Comparator subject;
     List<SchemeObject> objects;
     List<bool> bools;
+    public ComparatorEditorPanel panel;
 
     private void Start()
     {
@@ -47,6 +47,7 @@ public class TabComparatorInputsGroup : TabGroup
         int index = tabButtons.IndexOf(item);
         item.text.text = schemeObject.name;
         objects[index] = schemeObject.schemeObject;
+        panel.AddInput(index);
     }
 
     public void SetInputType(ComparatorInput item)

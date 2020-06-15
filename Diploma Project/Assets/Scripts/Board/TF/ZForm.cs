@@ -1,35 +1,55 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class ZForm : TransferFunction
 {
-    public float DT { get; set; }
-
-    public ZForm(float[] n, float[] d) : base(n, d)
+    [SerializeField]
+    float dt;
+    public float DT
     {
+        get
+        {
+            return dt;
+        }
+        set
+        {
+            dt = value;
+        }
+    }
+
+    private void Start()
+    {
+        Recalculate();
     }
 
     public override float FirstTransform(float task)
     {
-        u[1] = task * numerator[0];
-        y[1] = u[1];
+        u[1] = task;
+        y[1] = u[1] * numerator[0];
         return y[1];
     }
+
+    //  0    1       2
+    //  u    u-1     u-2
+    //  y    y-1     y-2
 
     public override float Transform(float task)
     {
         float @out = 0;
         u[0] = task;
-        for (int i = 0; i < u.Length; i++)
+        int iterator = 0;
+        for (; iterator < n; iterator++)
         {
-            @out += u[i] * numerator[i];
+            @out += u[iterator] * numerator[iterator];
         }
 
-        for (int i = y.Length; i > 0; --i)
+        iterator = d - 1;
+        for (; iterator > 0; iterator--)
         {
-            @out -= y[i] * denumerator[i];
+            @out -= y[iterator] * denumerator[iterator];
         }
         y[0] = @out;
         Shift();
@@ -44,7 +64,21 @@ public class ZForm : TransferFunction
 
     public override void Recalculate()
     {
-        u = new float[numerator.Length];
-        y = new float[denumerator.Length];
+        n = numerator.Length;
+        d = denumerator.Length;
+        u = new float[n];
+        y = new float[d];
+    }
+
+    public override void Save(BinaryWriter writer)
+    {
+        base.Save(writer);
+        writer.Write(dt);
+    }
+
+    public override void Load(BinaryReader reader)
+    {
+        base.Load(reader);
+        dt = reader.ReadSingle();
     }
 }

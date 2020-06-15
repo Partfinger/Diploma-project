@@ -8,9 +8,8 @@ public class ControllerEntity : EntryUnit
 
     public override void Tick()
     {
-        int l = laws.Count;
         float control = 0;
-        for (int i = 0; i < l; i++)
+        for (int i = 0; i < laws.Count; i++)
         {
             control += laws[i].SetTask(input.output);
         }

@@ -23,13 +23,16 @@ public class ControllerPathSelector : TabGroup
             ControllerPathButton btn = Instantiate(prefab, container);
             btn.group = this;
             Subscribe(btn);
-            btn.name = i.ToString();
+            btn.GetComponentInChildren<Text>().text = i.ToString();
         }
     }
 
     public void Select(int id)
     {
-        Debug.Log(id);
+        if (id > -1)
+        {
+            DataClass.panelManager.AddInput(id);
+        }
         Cancle();
     }
 
@@ -37,7 +40,7 @@ public class ControllerPathSelector : TabGroup
     {
         for (int i = 0; i < tabButtons.Count; i++)
         {
-            Unsubscribe(tabButtons[i]);
+            Destroy(tabButtons[i].gameObject);
         }
         tabButtons.Clear();
         gameObject.SetActive(false);

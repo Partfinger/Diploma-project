@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System.IO;
 
 public abstract class TabButton : MonoBehaviour, IPointerClickHandler
 {
     public TabGroup group;
     public Image background;
 
-    public void OnPointerClick(PointerEventData eventData)
+    public virtual void OnPointerClick(PointerEventData eventData)
     {
         group.OnTabSelected(this);
     }
@@ -29,15 +30,5 @@ public abstract class TabButton : MonoBehaviour, IPointerClickHandler
     void Start()
     {
         background = GetComponent<Image>();
-    }
-
-    public void Save()
-    {
-
-    }
-
-    public void Load()
-    {
-        
     }
 }

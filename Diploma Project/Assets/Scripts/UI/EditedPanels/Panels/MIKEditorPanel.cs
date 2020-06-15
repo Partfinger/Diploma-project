@@ -10,6 +10,12 @@ public class MIKEditorPanel : EditedPanel
     public ControllerEntity ePrefab;
     public List<ControlPath> controlPaths;
     public ControlLaw[] laws;
+    Type[] controllerTypes =
+    {
+        typeof(PController),
+        typeof(IController),
+        typeof(DController)
+    };
 
     private void Start()
     {
@@ -29,9 +35,9 @@ public class MIKEditorPanel : EditedPanel
     internal void UpdateData(int iD1, int iD2, int lawID, float coef)
     {
         ControllerEntity ce = parent.boardObject.GetComponent<MIK51>().controllers[iD1];
-        if (lawID != GetTypeLawInt(ce.laws[iD2].GetType().Name))
+        if (lawID != GetTypeLawInt(ce.laws[iD2].GetType()))
         {
-            ce.laws[iD2] = (ControlLaw)Activator.CreateInstance(GetTypeLaw(lawID));
+            ce.laws[iD2] = (ControlLaw)ce.gameObject.AddComponent(GetTypeLaw(lawID));
         }
         ce.laws[iD2].coefficient = coef;
     }
@@ -44,36 +50,19 @@ public class MIKEditorPanel : EditedPanel
         cp.inputText.text = cp.schemeObject.Input.name;
     }
 
-    public int GetTypeLawInt(string n)
+    public int GetTypeLawInt(Type type)
     {
-        switch (n)
+        for (int i= 0; i < 3; i++)
         {
-            case "PController":
-                return 0;
-            case "IController":
-                return 1;
-            case "DController":
-                return 2;
+            if (type == controllerTypes[i])
+                return i;
         }
         return -1;
     }
 
     public Type GetTypeLaw(int i)
     {
-        string n = "Object";
-        switch (i)
-        {
-            case 0:
-                n = "PController";
-                break;
-            case 1:
-                n = "IController";
-                break;
-            case 2:
-                n = "DController";
-                break;
-        }
-        return Type.GetType(n);
+        return controllerTypes[i];
     }
 
     public void AddNewPath()

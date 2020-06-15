@@ -451,7 +451,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: y(n) y(n-1) ... y(0)
+  m_Text: u(n) u(n-1) ... u(0)
 --- !u!1 &4152774786783209245
 GameObject:
   m_ObjectHideFlags: 0
@@ -634,7 +634,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: u(n) u(n-1) ... u(0)
+  m_Text: y(n) y(n-1) ... y(0)
 --- !u!1 &4152774787041805153
 GameObject:
   m_ObjectHideFlags: 0
@@ -1126,10 +1126,8 @@ MonoBehaviour:
   num: {fileID: 4152774787268771480}
   denum: {fileID: 4152774787833196690}
   inputDt: {fileID: 3805794407799902217}
-  u:
-  - 1
-  y:
-  - 1
+  u: []
+  y: []
 --- !u!1 &4152774787833196684
 GameObject:
   m_ObjectHideFlags: 0

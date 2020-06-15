@@ -10,10 +10,11 @@ public class ComparatorEditorPanel : EditedPanel
     public List<GameObject> list;
     public TabGroup group;
     public RectTransform rect;
+    public Comparator subject;
 
     private void Start()
     {
-        ComparatorInput.panel = this;
+        subject = parent.boardObject.GetComponent<Comparator>();
     }
 
     public void Add()
@@ -21,12 +22,14 @@ public class ComparatorEditorPanel : EditedPanel
         GameObject newO = Instantiate(inputPrefab, content);
         list.Add(newO);
         ComparatorInput input = newO.GetComponent<ComparatorInput>();
+        input.panel = this;
         input.group = group;
         group.Subscribe(input);
-        group.OnTabSelected(input);
         transform.SetAsLastSibling();
         fitter.SetLayoutVertical();
         LayoutRebuilder.ForceRebuildLayoutImmediate(rect);
+        subject.inputs.Add(null);
+        subject.types.Add(false);
     }
 
     public override void AddInput(GameObject dropZone)
@@ -36,13 +39,26 @@ public class ComparatorEditorPanel : EditedPanel
             if (tab.gameObject == dropZone)
             {
                 ((TabComparatorInputsGroup)group).SetInput((ComparatorInput)tab, DataClass.panelManager.captured);
+
                 break;
             }
         }
     }
 
+    public void SetType(int index, bool newType)
+    {
+        subject.types[index] = newType;
+    }
+
+    public void AddInput(int index)
+    {
+        subject.inputs[index] = DataClass.panelManager.captured.schemeObject.boardObject.GetComponent<Unit>();
+    }
+
     public void Remove(int index)
     {
         list.RemoveAt(index);
+        subject.inputs.RemoveAt(index);
+        subject.types.RemoveAt(index);
     }
 }

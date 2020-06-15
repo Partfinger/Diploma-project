@@ -105,7 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdbc283a7f66dc14ead1beb23e8d9915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  haveInput: 1
+  haveInput: 0
   input: {fileID: 0}
   propPanel: {fileID: 0}
   boardObject: {fileID: 0}

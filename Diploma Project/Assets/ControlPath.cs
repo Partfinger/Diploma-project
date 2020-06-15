@@ -1,32 +1,23 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ControlPath : TabSchemeObject
 {
-    public int ID;
+    public new int ID;
     public MIKEditorPanel panel;
     public Transform container;
     public LawEditor lawPrefab;
     public Text idText, inputText;
-    public List<LawEditor> laws;
-
-    private void Start()
-    {
-        laws = new List<LawEditor>();
-    }
+    public List<LawEditor> laws = new List<LawEditor>();
 
     public void Delete()
     {
         panel.RemoveItem(ID);
         Destroy(gameObject);
-    }
-
-    public void SetInput()
-    {
-
     }
 
     internal void RemoveAt(int iD)
@@ -54,10 +45,47 @@ public class ControlPath : TabSchemeObject
         le.path = this;
         laws.Add(le);
         le.ID = laws.IndexOf(le);
-        //(ControlLaw)Activator.CreateInstance(GetTypeLaw(lawID))
-        schemeObject.boardObject.GetComponent<ControllerEntity>().laws.Add(
-            (ControlLaw)Activator.CreateInstance(
-                panel.GetTypeLaw(0)));
-        schemeObject.boardObject.GetComponent<ControllerEntity>().laws[le.ID].coefficient = le.coef;
+        ControllerEntity ce = schemeObject.boardObject.GetComponent<ControllerEntity>();
+        PController con =  (PController)ce.gameObject.AddComponent(typeof(PController));
+        con.coefficient = 1;
+        ce.laws.Add(con);
+    }
+
+    public override void GetName()
+    {
+        title.text = Name + " " + ID;
+    }
+
+    public override void Save(BinaryWriter writer)
+    {
+        writer.Write(laws.Count);
+        foreach (LawEditor law in laws)
+        {
+            law.Save(writer);
+        }
+        writer.Write(HasInputs());
+        if (HasInputs())
+        {
+            writer.Write(GetIDInput());
+        }
+    }
+
+    public override void Load(BinaryReader reader)
+    {
+        int num = reader.ReadInt32();
+        for (int i = 0; i < num; i++)
+        {
+            AddLaw();
+            laws[i].Load(reader);
+        }
+        if (reader.ReadBoolean())
+        {
+            DataClass.objectManager.InputLoader += LoadInputs;
+        }
+    }
+
+    public override void LoadInputs(BinaryReader reader)
+    {
+        throw new NotImplementedException();
     }
 }

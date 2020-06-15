@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class FileMenu : MonoBehaviour
 {
@@ -21,6 +22,11 @@ public class FileMenu : MonoBehaviour
                 Application.Quit();
                 break;
         }
+    }
+
+    public void Save()
+    {
+
     }
 
     public void ShowYesNoQuestion()

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -7,12 +8,14 @@ using UnityEngine.UI;
 public abstract class TabSchemeObject : TabButton, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     public Text title;
-    public static EditorPanelManager panelManager;
     public SchemeObject schemeObject;
+    public int EditorObjectID;
+    public static int ID = 0;
+    public string Name;
 
     void Start()
     {
-        title.text = name;
+        GetName();
     }
 
     public override void Exit()
@@ -31,7 +34,7 @@ public abstract class TabSchemeObject : TabButton, IBeginDragHandler, IDragHandl
     public override void Select()
     {
         ShowOptions();
-        panelManager.panel = schemeObject.propPanel.GetComponent<EditedPanel>();
+        DataClass.panelManager.panel = schemeObject.propPanel.GetComponent<EditedPanel>();
     }
 
     public void ShowOptions()
@@ -39,15 +42,15 @@ public abstract class TabSchemeObject : TabButton, IBeginDragHandler, IDragHandl
         schemeObject.propPanel.SetActive(true);
         if (schemeObject.haveInput)
         {
-            panelManager.inputPanel.SetActive(true);
-            panelManager.inputPanel.transform.GetChild(1).GetComponentInChildren<Text>().text = schemeObject.Input ? schemeObject.Input.name : "Вибрати";
+            DataClass.panelManager.inputPanel.SetActive(true);
+            DataClass.panelManager.inputPanel.transform.GetChild(1).GetComponentInChildren<Text>().text = schemeObject.Input ? schemeObject.Input.name : "Вибрати";
         }
     }
 
     public void HideOptions()
     {
         schemeObject.propPanel.SetActive(false);
-        panelManager.inputPanel.SetActive(false);
+        DataClass.panelManager.inputPanel.SetActive(false);
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -56,10 +59,10 @@ public abstract class TabSchemeObject : TabButton, IBeginDragHandler, IDragHandl
         {
             if (@object.tag == "SchemeObject")
             {
-                panelManager.captured = @object.GetComponent<TabSchemeObject>();
-                if (panelManager.captured is TabSchemeMIK)
+                DataClass.panelManager.captured = @object.GetComponent<TabSchemeObject>();
+                if (DataClass.panelManager.captured is TabSchemeMIK)
                 {
-                    panelManager.itIsController = true;
+                    DataClass.panelManager.itIsController = true;
                 }
                 break;
             }
@@ -72,7 +75,7 @@ public abstract class TabSchemeObject : TabButton, IBeginDragHandler, IDragHandl
         {
             if (@object.tag == "DragDropZone")
             {
-                panelManager.AddInput(@object);
+                DataClass.panelManager.AddInput(@object);
                 break;
             }
         }
@@ -82,4 +85,22 @@ public abstract class TabSchemeObject : TabButton, IBeginDragHandler, IDragHandl
     {
         return;
     }
+
+    public virtual bool HasInputs()
+    {
+        return schemeObject.Input;
+    }
+
+    public int GetIDInput()
+    {
+        return group.tabButtons.IndexOf(schemeObject.Input.gameObject.GetComponent<TabSchemeObject>());
+    }
+
+    public abstract void GetName();
+
+    public abstract void Save(BinaryWriter writer);
+
+    public abstract void Load(BinaryReader reader);
+
+    public abstract void LoadInputs(BinaryReader reader);
 }

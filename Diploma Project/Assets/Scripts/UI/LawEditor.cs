@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Text.RegularExpressions;
 using UnityEngine;
 
@@ -36,5 +38,20 @@ public class LawEditor : MonoBehaviour
     {
         path.RemoveAt(ID);
         Destroy(gameObject);
+    }
+
+    internal void Save(BinaryWriter writer)
+    {
+        writer.Write(ID);
+        writer.Write(lawID);
+        writer.Write(coef);
+    }
+
+    internal void Load(BinaryReader reader)
+    {
+        ID = reader.ReadInt32();
+        lawID = reader.ReadInt32();
+        coef = reader.ReadSingle();
+        UpdateData();
     }
 }

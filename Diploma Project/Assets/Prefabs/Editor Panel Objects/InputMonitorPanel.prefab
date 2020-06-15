@@ -85,7 +85,7 @@ GameObject:
   - component: {fileID: 2122333042203666959}
   - component: {fileID: 2122333042203666957}
   - component: {fileID: 2122333042203666958}
-  - component: {fileID: 2709407652387831418}
+  - component: {fileID: 7663336253467684737}
   m_Layer: 0
   m_Name: InputMonitorPanel
   m_TagString: DragDropZone
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2709407652387831418
+--- !u!114 &7663336253467684737
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,12 +161,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2122333042203666944}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a52ee1021b3550419e09b272de8374e, type: 3}
+  m_Script: {fileID: 11500000, guid: 5bb3eb5bea56b5f48bfdb850a640de19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   group: {fileID: 0}
-  background: {fileID: 2122333042203666958}
-  text: {fileID: 2147626539000945913}
+  background: {fileID: 0}
+  panel: {fileID: 0}
 --- !u!1 &2282747830902556462
 GameObject:
   m_ObjectHideFlags: 0
@@ -517,7 +517,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2709407652387831418}
+      - m_Target: {fileID: 7663336253467684737}
         m_MethodName: Remove
         m_Mode: 1
         m_Arguments:

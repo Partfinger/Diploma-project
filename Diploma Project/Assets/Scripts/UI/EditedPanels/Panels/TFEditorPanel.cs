@@ -34,7 +34,7 @@ public class TFEditorPanel : EditedPanel
 
     public void SetD()
     {
-        string[] strings = num.text.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+        string[] strings = denum.text.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
         y = new float[strings.Length];
         for (int i = 0; i < strings.Length; i++)
         {
@@ -46,14 +46,25 @@ public class TFEditorPanel : EditedPanel
     public void SetType(bool toggle)
     {
         isDiscrete = toggle;
+        TransferFunction tf;
         if (isDiscrete)
         {
-            unit.funct = new ZForm(u, y);
+            Destroy(unit.funct);
+            tf = unit.gameObject.AddComponent<ZForm>();
+            tf.numerator = u;
+            tf.denumerator = y;
+            unit.funct = tf;
+            unit.funct.Recalculate();
             inputDt.SetActive(true);
         }
         else
         {
-            unit.funct = new SForm(u, y);
+            Destroy(unit.funct);
+            tf = unit.gameObject.AddComponent<SForm>();
+            tf.numerator = u;
+            tf.denumerator = y;
+            unit.funct = tf;
+            unit.funct.Recalculate();
             inputDt.SetActive(false);
         }
     }
@@ -63,48 +74,4 @@ public class TFEditorPanel : EditedPanel
         timeDiscrete = float.Parse(Regex.Replace(str, "\\.", ","));
         ((ZForm)unit.funct).DT = timeDiscrete;
     }
-
-    /*
-    public override void Apply()
-    {
-        TransferFunction tf = parent.boardObject.GetComponent<TransferFunction>();
-        string[] strings = num.text.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-        tf.numerator = new float[strings.Length];
-        try
-        {
-            for (int i = 0; i < strings.Length; i++)
-            {
-                tf.numerator[i] = float.Parse(strings[i]);
-            }
-        }
-        catch (FormatException e)
-        {
-
-        }
-
-        strings = denum.text.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-        tf.denumerator = new float[strings.Length];
-        try
-        {
-            for (int i = 0; i < strings.Length; i++)
-            {
-                tf.denumerator[i] = float.Parse(strings[i]);
-            }
-            tf.ResetTF();
-        }
-        catch (FormatException e)
-        {
-
-        }
-        //parent.unit.input
-    }
-
-    /*public override void Show()
-    {
-        TransferFunction tf = parent.boardObject.GetComponent<TransferFunction>();
-        base.Show();
-        num.text = string.Join(" ", tf.numerator);
-        denum.text = string.Join(" ", tf.denumerator);
-    }*/
-
 }

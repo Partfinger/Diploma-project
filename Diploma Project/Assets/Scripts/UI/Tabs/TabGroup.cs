@@ -55,17 +55,4 @@ public class TabGroup : MonoBehaviour
             tab.background.color = tabIdle;
         }
     }
-
-    public void Save()
-    {
-        foreach (TabButton tab in tabButtons)
-        {
-            tab.Save();
-        }
-    }
-
-    public void Load(int level)
-    {
-        
-    }
 }

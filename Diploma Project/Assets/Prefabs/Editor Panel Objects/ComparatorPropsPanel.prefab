@@ -302,8 +302,8 @@ MonoBehaviour:
   tabButtons: []
   active: {fileID: 0}
   tabIdle: {r: 1, g: 1, b: 1, a: 0.39215687}
-  tabActive: {r: 1, g: 0, b: 0, a: 0.39215687}
-  subject: {fileID: 0}
+  tabActive: {r: 1, g: 1, b: 1, a: 0.39215687}
+  panel: {fileID: 4960872848199402872}
 --- !u!114 &2514381423161146425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -470,7 +470,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eff9509b7a0ed747b781fad4ef0a997, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  haveInput: 1
+  haveInput: 0
   haveSeveralInputs: 1
   parent: {fileID: 0}
   inputPrefab: {fileID: 1727494122304005674, guid: 23b82e5d659a7e6459bfe9fe6ef0ecb8,
@@ -479,3 +479,4 @@ MonoBehaviour:
   list: []
   group: {fileID: 7239476401876550865}
   rect: {fileID: 8733910419110264351}
+  subject: {fileID: 0}

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class TabSchemeMIK : TabSchemeObject
+public class TabSchemeMonitor : TabSchemeObject
 {
     public override void GetName()
     {

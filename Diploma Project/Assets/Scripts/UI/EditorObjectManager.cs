@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
+
+public delegate void ReaderMethod(BinaryReader reader);
 
 public class EditorObjectManager : MonoBehaviour
 {
@@ -11,12 +14,14 @@ public class EditorObjectManager : MonoBehaviour
     public TabObjectGroup group;
     public Transform content, panelBoard, panelEditor;
     public Dropdown it;
-    public EditorPanelManager panelManager;
+    public Queue<int> loadIDs = new Queue<int>();
+
+    public event ReaderMethod InputLoader;
 
     private void Start()
     {
         group.tabButtons = new List<TabButton>();
-        TabSchemeObject.panelManager = panelManager;
+        DataClass.objectManager = this;
     }
 
     public void AddNewObject(int index)
@@ -28,6 +33,7 @@ public class EditorObjectManager : MonoBehaviour
             {
                 TabSchemeObject newButton = Instantiate(objects[index], content);
                 newButton.group = group;
+                newButton.EditorObjectID = index;
                 newButton.schemeObject.boardObject = Instantiate(boardObjects[index], panelBoard);
                 newButton.schemeObject.propPanel = Instantiate(propPanels[index], panelEditor);
                 newButton.schemeObject.propPanel.GetComponent<EditedPanel>().parent = newButton.schemeObject;
@@ -46,5 +52,33 @@ public class EditorObjectManager : MonoBehaviour
     public void RemoveElement()
     {
         group.active.Remove();
+    }
+
+    public void Save(BinaryWriter writer)
+    {
+        writer.Write(DataClass.version);
+        writer.Write(group.tabButtons.Count);
+        for (int i = 0; i < group.tabButtons.Count; i++)
+        {
+            writer.Write(((TabSchemeObject)group.tabButtons[i]).EditorObjectID);
+            ((TabSchemeObject)group.tabButtons[i]).Save(writer);
+        }
+    }
+
+    public void Load(BinaryReader reader)
+    {
+        int version = reader.ReadInt32();
+        if (version == DataClass.version)
+        {
+            int count = reader.ReadInt32();
+            int index;
+            for (int i = 0; i < count; i++)
+            {
+                index = reader.ReadInt32() + 1;
+                AddNewObject(index);
+                ((TabSchemeObject)group.active).Load(reader);
+            }
+        }
+        InputLoader(reader);
     }
 }
