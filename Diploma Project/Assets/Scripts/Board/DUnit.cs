@@ -8,7 +8,8 @@ public class DUnit : EntryUnit
 
     private void Start()
     {
-        funct = new SForm(new float[1], new float[1]);
+        if (funct == null)
+            funct = new SForm(new float[1], new float[1]);
     }
 
     public override void Tick()

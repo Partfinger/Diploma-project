@@ -40,10 +40,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5568389399331223898}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0d552a0b5e95b148b3e139ce0810080, type: 3}
+  m_Script: {fileID: 11500000, guid: 9962ed65c49616c4b886e748a1aa15c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   output: 0
   inQueue: 0
   input: {fileID: 0}
-  laws: []

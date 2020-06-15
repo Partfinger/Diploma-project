@@ -40,8 +40,8 @@ public class MIKEditorPanel : EditedPanel
     {
         ControlPath cp =
             dropZone.GetComponentInParent<ControlPath>();
-        cp.Input = DataClass.panelManager.captured;
-        cp.inputText.text = cp.Input.schemeObject.name;
+        cp.schemeObject.Input = DataClass.panelManager.captured.schemeObject;
+        cp.inputText.text = cp.schemeObject.Input.name;
     }
 
     public int GetTypeLawInt(string n)
@@ -83,7 +83,7 @@ public class MIKEditorPanel : EditedPanel
         controlPaths.Add(p);
         p.UpdateID(controlPaths.Count - 1);
         ControllerEntity entity = Instantiate(ePrefab, parent.boardObject.transform);
+        p.schemeObject.boardObject = entity.gameObject;
         parent.boardObject.GetComponent<MIK51>().controllers.Add(entity);
-        p.entity = entity;
     }
 }

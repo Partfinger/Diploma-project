@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class TransferFunction
+public abstract class TransferFunction : MonoBehaviour
 {
-    protected float[] numerator, denumerator;
+    public float[] numerator, denumerator;
+    protected float[] u, y;
+
     public float[] Numerator
     {
         get
@@ -40,6 +42,9 @@ public abstract class TransferFunction
     {
         numerator = n;
         denumerator = d;
+
+        u = new float[n.Length];
+        y = new float[d.Length];
     }
 
     public abstract float FirstTransform(float task);

@@ -16,7 +16,8 @@ public class MIK51 : MonoBehaviour
     private void Start()
     {
         modeText.text = (mode + 1).ToString();
-        controllers = new List<ControllerEntity>();
+        if (controllers.Count == 0)
+            controllers = new List<ControllerEntity>();
     }
 
     public void SetModeUp()

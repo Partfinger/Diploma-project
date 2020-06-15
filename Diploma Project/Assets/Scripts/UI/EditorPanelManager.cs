@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class EditorPanelManager : MonoBehaviour
 {
-    public GameObject inputPanel, specialPanel, QuestionPanel;
+    public GameObject inputPanel, specialPanel, QuestionPanel, back;
     public ControllerPathSelector QuestionControllerPathPanel;
     public Text questionText;
     public EditorObjectManager manager;
@@ -24,16 +24,26 @@ public class EditorPanelManager : MonoBehaviour
 
     public virtual void AddInput(GameObject dropZone)
     {
-        if (!panel.haveSeveralInputs || ( dropZone.name == "Input Panel" && !itIsController))
+        if (!panel.haveSeveralInputs || dropZone.name == "Input Panel")
         {
-            panel.parent.Input = captured.schemeObject;
-            inputPanel.transform.GetChild(1).GetComponentInChildren<Text>().text = captured.schemeObject.name;
-            captured = null;
+            if (itIsController)
+            {
+                back.SetActive(true);
+                dz = dropZone;
+                QuestionControllerPathPanel.Show();
+            }
+            else
+            {
+                panel.parent.Input = captured.schemeObject;
+                inputPanel.transform.GetChild(1).GetComponentInChildren<Text>().text = captured.schemeObject.name;
+                captured = null;
+            }
         }
         else
         {
             if (itIsController)
             {
+                back.SetActive(true);
                 dz = dropZone;
                 QuestionControllerPathPanel.Show();
             }
@@ -49,9 +59,25 @@ public class EditorPanelManager : MonoBehaviour
     {
         MIKEditorPanel mep = captured.schemeObject.propPanel.GetComponent<MIKEditorPanel>();
         captured = mep.controlPaths[id];
-        panel.AddInput(dz);
+        if (dz.name == "Input Panel")
+        {
+            panel.parent.Input = captured.schemeObject;
+            inputPanel.transform.GetChild(1).GetComponentInChildren<Text>().text = captured.schemeObject.name;
+        }
+        else
+        {
+            panel.AddInput(dz);
+        }
         dz = null;
         captured = null;
+        back.SetActive(false);
+    }
+
+    public void CancleSelector()
+    {
+        dz = null;
+        captured = null;
+        back.SetActive(false);
     }
 
     enum QuestionMode { none, delete}

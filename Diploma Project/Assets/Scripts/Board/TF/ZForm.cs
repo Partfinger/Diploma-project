@@ -6,12 +6,9 @@ using UnityEngine;
 public class ZForm : TransferFunction
 {
     public float DT { get; set; }
-    float[] u, y;
 
     public ZForm(float[] n, float[] d) : base(n, d)
     {
-        u = new float[n.Length];
-        y = new float[d.Length];
     }
 
     public override float FirstTransform(float task)

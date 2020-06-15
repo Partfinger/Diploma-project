@@ -367,6 +367,7 @@ GameObject:
   - component: {fileID: 2897752514723796482}
   - component: {fileID: 2897752514723796481}
   - component: {fileID: -2122275496352656336}
+  - component: {fileID: 6945721454946332946}
   m_Layer: 0
   m_Name: Control Canal
   m_TagString: DragDropZone
@@ -450,8 +451,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11c538fdb444c9a4a95d1ab2e2c04e86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  group: {fileID: 0}
+  background: {fileID: 0}
+  title: {fileID: 0}
+  schemeObject: {fileID: 6945721454946332946}
   ID: 0
-  input: {fileID: 0}
   panel: {fileID: 0}
   container: {fileID: 8338968192829201195}
   lawPrefab: {fileID: 7521706429947511664, guid: 369d4695b7a83f3429ba3711ea985045,
@@ -459,7 +463,22 @@ MonoBehaviour:
   idText: {fileID: 107235901007240883}
   inputText: {fileID: 7808444353671040616}
   laws: []
-  entity: {fileID: 0}
+--- !u!114 &6945721454946332946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2897752514723796495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdbc283a7f66dc14ead1beb23e8d9915, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  haveInput: 1
+  input: {fileID: 0}
+  propPanel: {fileID: 0}
+  boardObject: {fileID: 0}
 --- !u!1 &3134943554128794903
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Comparator : EntryUnit
+public class Comparator : Unit
 {
-    public EntryUnit[] anothers;
+    public Unit[] anothers;
     public bool[] types;
 
     public override void Tick()
     {
-        output = input.output;
+        output = 0;
         for (int i =0; i < anothers.Length; i++)
         {
             output += types[i] ? anothers[i].output : -anothers[i].output;

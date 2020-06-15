@@ -11,15 +11,17 @@ public class ControllerPathSelector : TabGroup
     public override void OnTabSelected(TabButton button)
     {
         int id = tabButtons.IndexOf((ControllerPathButton)button);
-        Debug.Log(id);
+        Select(id);
     }
 
     public void Show()
     {
+        gameObject.SetActive(true);
         MIKEditorPanel mep = DataClass.panelManager.captured.schemeObject.propPanel.GetComponent<MIKEditorPanel>();
         for (int i =0; i < mep.controlPaths.Count; i++)
         {
             ControllerPathButton btn = Instantiate(prefab, container);
+            btn.group = this;
             Subscribe(btn);
             btn.name = i.ToString();
         }
@@ -27,11 +29,18 @@ public class ControllerPathSelector : TabGroup
 
     public void Select(int id)
     {
-
+        Debug.Log(id);
+        Cancle();
     }
 
     public void Cancle()
     {
-
+        for (int i = 0; i < tabButtons.Count; i++)
+        {
+            Unsubscribe(tabButtons[i]);
+        }
+        tabButtons.Clear();
+        gameObject.SetActive(false);
+        DataClass.panelManager.CancleSelector();
     }
 }

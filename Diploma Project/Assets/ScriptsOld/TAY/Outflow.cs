@@ -8,8 +8,9 @@ public class Outflow : EntryUnit
 {
     public event SimulationUpdate Step;
 
-    public void Run()
+    public void Start()
     {
+        SForm.dt = Time.fixedDeltaTime;
         Queue<Unit> queue = new Queue<Unit>();
         List<Unit> units = new List<Unit>();
         queue.Enqueue(input);
