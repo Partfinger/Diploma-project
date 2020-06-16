@@ -18,7 +18,8 @@ public class TabSchemeTransferFunction : TabSchemeObject
         DUnit unit = schemeObject.boardObject.GetComponent<DUnit>();
         if (!reader.ReadBoolean())
         {
-            unit.gameObject.AddComponent<ZForm>();
+            Destroy(unit.funct);
+            unit.funct = unit.gameObject.AddComponent<ZForm>();
         }
         unit.funct.Load(reader);
         if (reader.ReadBoolean())
@@ -30,7 +31,20 @@ public class TabSchemeTransferFunction : TabSchemeObject
 
     public override void LoadInputs(BinaryReader reader)
     {
-        schemeObject.Input = DataClass.objectManager.objects[DataClass.objectManager.loadIDs.Dequeue()].schemeObject;
+        schemeObject.Input = 
+            ((TabSchemeObject)DataClass.objectManager.group.tabButtons[
+                DataClass.objectManager.loadIDs.Dequeue()
+                ]).schemeObject;
+    }
+
+    public override void PrepareToSim()
+    {
+
+    }
+
+    public override void PrepareToStop()
+    {
+        schemeObject.boardObject.GetComponent<DUnit>().inQueue = false;
     }
 
     public override void Save(BinaryWriter writer)
@@ -38,8 +52,8 @@ public class TabSchemeTransferFunction : TabSchemeObject
         DUnit unit = schemeObject.boardObject.GetComponent<DUnit>();
         writer.Write(unit.funct is SForm);
         unit.funct.Save(writer);
-        writer.Write(schemeObject.Input != null);
-        if (schemeObject.Input != null)
+        writer.Write(schemeObject.Input);
+        if (schemeObject.Input)
         {
             writer.Write(GetIDInput());
         }

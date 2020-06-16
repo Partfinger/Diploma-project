@@ -19,7 +19,7 @@ public class SchemeObject : MonoBehaviour
             input = value;
             EntryUnit unit = boardObject.GetComponent<EntryUnit>();
             unit.input = 
-                input.boardObject.GetComponent<EntryUnit>();
+                input.boardObject.GetComponent<Unit>();
         }
     }
 

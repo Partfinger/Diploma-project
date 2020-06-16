@@ -7,5 +7,6 @@ public static class DataClass
     public static EditorPanelManager panelManager;
     public static GameObject back;
     public static EditorObjectManager objectManager;
-    public static int version = 0;
+    public static SaveLoadMenu saveLoadMenu;
+    public static int version = 1;
 }

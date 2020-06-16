@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
+using System.Linq;
 
 public delegate void ReaderMethod(BinaryReader reader);
 
@@ -15,6 +16,9 @@ public class EditorObjectManager : MonoBehaviour
     public Transform content, panelBoard, panelEditor;
     public Dropdown it;
     public Queue<int> loadIDs = new Queue<int>();
+    [SerializeField]
+    SaveLoadMenu saveLoadMenu;
+    public bool wasSimulation;
 
     public event ReaderMethod InputLoader;
 
@@ -22,6 +26,7 @@ public class EditorObjectManager : MonoBehaviour
     {
         group.tabButtons = new List<TabButton>();
         DataClass.objectManager = this;
+        DataClass.saveLoadMenu = saveLoadMenu;
     }
 
     public void AddNewObject(int index)
@@ -56,7 +61,6 @@ public class EditorObjectManager : MonoBehaviour
 
     public void Save(BinaryWriter writer)
     {
-        writer.Write(DataClass.version);
         writer.Write(group.tabButtons.Count);
         for (int i = 0; i < group.tabButtons.Count; i++)
         {
@@ -67,18 +71,46 @@ public class EditorObjectManager : MonoBehaviour
 
     public void Load(BinaryReader reader)
     {
-        int version = reader.ReadInt32();
-        if (version == DataClass.version)
+        ClearAll();
+        int count = reader.ReadInt32();
+        int index;
+        for (int i = 0; i < count; i++)
         {
-            int count = reader.ReadInt32();
-            int index;
-            for (int i = 0; i < count; i++)
-            {
-                index = reader.ReadInt32() + 1;
-                AddNewObject(index);
-                ((TabSchemeObject)group.active).Load(reader);
-            }
+            index = reader.ReadInt32() + 1;
+            AddNewObject(index);
+            ((TabSchemeObject)group.active).Load(reader);
+            ((TabSchemeObject)group.active).schemeObject.propPanel.GetComponent<EditedPanel>().Refresh();
         }
-        InputLoader(reader);
+        loadIDs.Reverse();
+        if (loadIDs.Count > 0)
+            InputLoader(reader);
+    }
+
+    public void ClearAll()
+    {
+        int n = group.tabButtons.Count;
+        Queue<TabButton> removeq = new Queue<TabButton>(group.tabButtons);
+        for (int i =0; i < n; i++)
+        {
+            TabButton tbt = removeq.Dequeue();
+            tbt.Remove();
+        }
+        group.active = null;
+    }
+
+    public void StartSim()
+    {
+        for (int i = 0; i < group.tabButtons.Count; i++)
+            ((TabSchemeObject)group.tabButtons[i]).PrepareToSim();
+        gameObject.SetActive(false);
+        DataClass.panelManager.gameObject.SetActive(false);
+    }
+
+    public void StopSim()
+    {
+        for (int i = 0; i < group.tabButtons.Count; i++)
+            ((TabSchemeObject)group.tabButtons[i]).PrepareToStop();
+        gameObject.SetActive(true);
+        DataClass.panelManager.gameObject.SetActive(true);
     }
 }

@@ -285,7 +285,18 @@ MonoBehaviour:
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3099370505967918786}
+        m_MethodName: SetTime
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1126,6 +1137,7 @@ MonoBehaviour:
   num: {fileID: 4152774787268771480}
   denum: {fileID: 4152774787833196690}
   inputDt: {fileID: 3805794407799902217}
+  check: {fileID: 6717880003674688561}
   u: []
   y: []
 --- !u!1 &4152774787833196684

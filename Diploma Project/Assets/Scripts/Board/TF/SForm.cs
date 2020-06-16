@@ -6,7 +6,6 @@ using UnityEngine.UIElements;
 
 public class SForm : TransferFunction
 {
-    public static float dt;
     [SerializeField]
     float[] uOld, yOld;
 

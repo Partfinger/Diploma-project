@@ -9,14 +9,9 @@ public class Source : Unit
 
     public IndicatorText indicatorText;
 
-    private void Start()
-    {
-        UpdatePanel();
-    }
-
     public void UpdatePanel()
     {
-        indicatorText.Perfome(ref start);
+        indicatorText.Perfome(start);
     }
 
     public override void Tick()
@@ -29,6 +24,8 @@ public class Source : Unit
         writer.Write(min);
         writer.Write(max);
         writer.Write(start);
+        writer.Write(transform.localPosition.x);
+        writer.Write(transform.localPosition.y);
     }
 
     public void Load(BinaryReader reader)
@@ -36,5 +33,6 @@ public class Source : Unit
         min = reader.ReadSingle();
         max = reader.ReadSingle();
         start = reader.ReadSingle();
+        transform.localPosition = new Vector3(reader.ReadSingle(), reader.ReadSingle(), 0);
     }
 }

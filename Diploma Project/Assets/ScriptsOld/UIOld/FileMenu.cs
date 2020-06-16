@@ -2,35 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using UnityEngine.UI;
 
 public class FileMenu : MonoBehaviour
 {
+    public Dropdown dd;
     public void Click(int button)
     {
-        Debug.Log(button);
         switch(button)
         {
-            case 0:
-                break;
             case 1:
+                DataClass.objectManager.ClearAll();
                 break;
             case 2:
+                Load();
                 break;
             case 3:
+                Save();
                 break;
-            case 4:
+            case 5:
                 Application.Quit();
                 break;
         }
+        dd.SetValueWithoutNotify(0);
     }
 
-    public void Save()
+    void Save()
     {
-
+        DataClass.saveLoadMenu.Open(true);
     }
 
-    public void ShowYesNoQuestion()
+    void Load()
     {
-
+        DataClass.saveLoadMenu.Open(false);
     }
 }

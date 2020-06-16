@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BRYEditorPanel : EditedPanel
 {
@@ -24,5 +25,14 @@ public class BRYEditorPanel : EditedPanel
             source.start = float.Parse(value);
             source.UpdatePanel();
         }
+    }
+
+    public override void Refresh()
+    {
+        Source s = (Source)parent.boardObject.GetComponent<Unit>();
+        InputField[] fields = GetComponentsInChildren<InputField>();
+        fields[0].text = s.min.ToString();
+        fields[1].text = s.max.ToString();
+        fields[2].text = s.start.ToString();
     }
 }

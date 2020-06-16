@@ -5,16 +5,22 @@ using UnityEngine;
 public class Tuner : MonoBehaviour
 {
     [SerializeField]
-    float min, max;
-    float delta;
+    public float min, max, delta;
+    public Source unit;
 
-    public Unit unit;
-
-    private void Start()
+    public void GetDelta()
     {
         delta = max - min;
     }
 
+    public void Prepare()
+    {
+        if (min > unit.start)
+            unit.start = min;
+        if (max < unit.start)
+            unit.start = max;
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, -35 + 290 * (unit.start / delta)));
+    }
 
     private void OnMouseDrag()
     {
@@ -33,5 +39,6 @@ public class Tuner : MonoBehaviour
             transform.rotation = Quaternion.Euler(rot);
         }
         unit.output = (325 - rot.z) / 290 * delta;
+        unit.indicatorText.Perfome(unit.output);
     }
 }

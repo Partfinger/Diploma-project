@@ -6,25 +6,6 @@ using UnityEngine;
 
 public class ZForm : TransferFunction
 {
-    [SerializeField]
-    float dt;
-    public float DT
-    {
-        get
-        {
-            return dt;
-        }
-        set
-        {
-            dt = value;
-        }
-    }
-
-    private void Start()
-    {
-        Recalculate();
-    }
-
     public override float FirstTransform(float task)
     {
         u[1] = task;

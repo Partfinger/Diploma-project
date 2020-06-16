@@ -10,4 +10,9 @@ public class ConstantEditorPanel : EditedPanel
         if (value.Length > 0)
             ((Constant)parent.boardObject.GetComponent<Unit>())._const = float.Parse(value);
     }
+
+    public override void Refresh()
+    {
+        GetComponentInChildren<InputField>().text = ((Constant)parent.boardObject.GetComponent<Unit>())._const.ToString();
+    }
 }

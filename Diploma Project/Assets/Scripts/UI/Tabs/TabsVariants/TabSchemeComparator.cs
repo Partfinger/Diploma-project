@@ -5,11 +5,6 @@ using UnityEngine;
 
 public class TabSchemeComparator : TabSchemeObject
 {
-    public override void GetName()
-    {
-        throw new System.NotImplementedException();
-    }
-
     public override void Load(BinaryReader reader)
     {
         throw new System.NotImplementedException();
@@ -18,6 +13,17 @@ public class TabSchemeComparator : TabSchemeObject
     public override void LoadInputs(BinaryReader reader)
     {
         throw new System.NotImplementedException();
+    }
+
+    public override void PrepareToSim()
+    {
+        schemeObject.boardObject.SetActive(true);
+    }
+
+    public override void PrepareToStop()
+    {
+        schemeObject.boardObject.SetActive(false);
+        schemeObject.boardObject.GetComponent<Comparator>().inQueue = false;
     }
 
     public override void Save(BinaryWriter writer)

@@ -61,4 +61,9 @@ public class ComparatorEditorPanel : EditedPanel
         subject.inputs.RemoveAt(index);
         subject.types.RemoveAt(index);
     }
+
+    public override void Refresh()
+    {
+        throw new System.NotImplementedException();
+    }
 }

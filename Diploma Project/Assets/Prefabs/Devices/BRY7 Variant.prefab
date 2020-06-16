@@ -110,6 +110,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   min: 0
   max: 0
+  delta: 0
   unit: {fileID: 8868656234527735748}
 --- !u!1 &5845789983869656506
 GameObject:
@@ -188,7 +189,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 00000
+  m_Text: 
 --- !u!1 &6778173256618440328
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,8 +406,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2e0c7bbbc0598e49973ea8b42182c96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  min: 0
-  max: 0
   text: {fileID: 2301835576402395275}
 --- !u!114 &-1919800333008301250
 MonoBehaviour:

@@ -12,7 +12,7 @@ public class Indicator : EntryUnit
     {
         for (int i = 0; i < indicators.Length; i++)
         {
-            indicators[i].Perfome(ref input.output);
+            indicators[i].Perfome(input.output);
         }
     }
 }

@@ -167,6 +167,8 @@ MonoBehaviour:
   group: {fileID: 0}
   background: {fileID: 0}
   panel: {fileID: 0}
+  image: {fileID: 6176770797866630231}
+  text: {fileID: 2147626539000945913}
 --- !u!1 &2282747830902556462
 GameObject:
   m_ObjectHideFlags: 0

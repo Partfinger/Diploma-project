@@ -4,7 +4,19 @@ using UnityEngine;
 public abstract class Unit : MonoBehaviour
 {
     public float output;
-    public bool inQueue;
+    [SerializeField]
+    bool q;
+    public bool inQueue
+    {
+        get
+        {
+            return q;
+        }
+        set
+        {
+            q = value;
+        }
+    }
 
     public virtual bool AddParentsToEvent(ref Queue<Unit> unit)
     {

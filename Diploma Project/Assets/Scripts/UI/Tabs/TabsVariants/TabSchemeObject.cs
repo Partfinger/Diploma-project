@@ -96,11 +96,18 @@ public abstract class TabSchemeObject : TabButton, IBeginDragHandler, IDragHandl
         return group.tabButtons.IndexOf(schemeObject.Input.gameObject.GetComponent<TabSchemeObject>());
     }
 
-    public abstract void GetName();
+    public virtual void GetName()
+    {
+        title.text = Name;
+    }
 
     public abstract void Save(BinaryWriter writer);
 
     public abstract void Load(BinaryReader reader);
 
     public abstract void LoadInputs(BinaryReader reader);
+
+    public abstract void PrepareToSim();
+
+    public abstract void PrepareToStop();
 }

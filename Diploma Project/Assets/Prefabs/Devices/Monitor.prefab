@@ -98,7 +98,13 @@ MonoBehaviour:
   output: 0
   inQueue: 0
   inputs: []
-  colors: []
+  colors:
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0.1660657, b: 1, a: 1}
+  - {r: 0, g: 1, b: 0.027828693, a: 1}
+  - {r: 1, g: 0, b: 0.7401557, a: 1}
+  - {r: 0, g: 0.50668955, b: 1, a: 1}
+  - {r: 0.15135835, g: 0.2830189, b: 0, a: 1}
   prefabDraver: {fileID: 2088679933210755845, guid: 396f4dead329f1448975c12e9753fb06,
     type: 3}
   drawers: []
@@ -106,7 +112,7 @@ MonoBehaviour:
   anchor1: {fileID: 7693853261769545154}
   anchor2: {fileID: 1462920179576441055}
   d: {x: 0, y: 0, z: 0}
-  max: 0
+  max: 10
   min: 0
 --- !u!114 &-7311903495087954026
 MonoBehaviour:

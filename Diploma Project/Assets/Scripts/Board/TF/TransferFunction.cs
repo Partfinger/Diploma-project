@@ -9,8 +9,10 @@ using UnityEngine;
 public abstract class TransferFunction : MonoBehaviour
 {
     public float[] numerator, denumerator;
+    [SerializeField]
     protected float[] u, y;
     protected int n, d;
+    public static float dt;
 
     public float[] Numerator
     {
@@ -36,11 +38,6 @@ public abstract class TransferFunction : MonoBehaviour
             denumerator = value;
             Recalculate();
         }
-    }
-
-    private void Start()
-    {
-        Recalculate();
     }
 
     public abstract float FirstTransform(float task);
@@ -77,5 +74,6 @@ public abstract class TransferFunction : MonoBehaviour
         {
             denumerator[i] = reader.ReadSingle();
         }
+        Recalculate();
     }
 }

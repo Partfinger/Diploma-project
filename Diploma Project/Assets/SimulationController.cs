@@ -4,32 +4,19 @@ using UnityEngine;
 
 public class SimulationController : MonoBehaviour
 {
-    public GameObject start, pause, stop, resume;
+    public GameObject start, stop;
 
     public void ClickStart()
     {
         start.SetActive(false);
         stop.SetActive(true);
-        pause.SetActive(true);
+        DataClass.objectManager.StartSim();
     }
 
     public void ClickStop()
     {
         stop.SetActive(false);
-        pause.SetActive(false);
-        resume.SetActive(false);
         start.SetActive(true);
-    }
-
-    public void ClickPause()
-    {
-        pause.SetActive(false);
-        resume.SetActive(true);
-    }
-
-    public void ClickResume()
-    {
-        resume.SetActive(false);
-        pause.SetActive(true);
+        DataClass.objectManager.StopSim();
     }
 }

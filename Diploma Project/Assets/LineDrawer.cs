@@ -22,6 +22,7 @@ public class LineDrawer : EntryUnit
         stepX = parent.d.x / lineCount;
         points = new float[lineCount];
         datas = new float[lineCount];
+        current = 0;
         for (int i =0; i < lineCount; i++)
         {
             points[i] = stepX * i;

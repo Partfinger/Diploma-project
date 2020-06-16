@@ -9,6 +9,7 @@ public class TFEditorPanel : EditedPanel
 {
     public InputField num, denum;
     public GameObject inputDt;
+    public Toggle check;
     [SerializeField]
     float[] u, y;
     bool isDiscrete;
@@ -23,24 +24,25 @@ public class TFEditorPanel : EditedPanel
 
     public void SetN()
     {
-        string[] strings = num.text.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-        u = new float[strings.Length];
-        for (int i = 0; i < strings.Length; i++)
-        {
-            u[i] = float.Parse(Regex.Replace(strings[i], "\\.", ","));
-        }
+        u = Handle(num.text);
         unit.funct.Numerator = u;
     }
 
     public void SetD()
     {
-        string[] strings = denum.text.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-        y = new float[strings.Length];
+        y = Handle(denum.text);
+        unit.funct.Denumerator = y;
+    }
+
+    float[] Handle(string s)
+    {
+        string[] strings = s.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+        float[] array = new float[strings.Length];
         for (int i = 0; i < strings.Length; i++)
         {
-            y[i] = float.Parse(Regex.Replace(strings[i], "\\.", ","));
+            array[i] = float.Parse(Regex.Replace(strings[i], "\\.", ","));
         }
-        unit.funct.Denumerator = y;
+        return array;
     }
 
     public void SetType(bool toggle)
@@ -55,7 +57,7 @@ public class TFEditorPanel : EditedPanel
             tf.denumerator = y;
             unit.funct = tf;
             unit.funct.Recalculate();
-            inputDt.SetActive(true);
+            //inputDt.SetActive(true);
         }
         else
         {
@@ -65,13 +67,31 @@ public class TFEditorPanel : EditedPanel
             tf.denumerator = y;
             unit.funct = tf;
             unit.funct.Recalculate();
-            inputDt.SetActive(false);
+            //inputDt.SetActive(false);
         }
     }
 
     public void SetTime(string str)
     {
-        timeDiscrete = float.Parse(Regex.Replace(str, "\\.", ","));
-        ((ZForm)unit.funct).DT = timeDiscrete;
+
+    }
+
+    public override void Refresh()
+    {
+        unit = parent.boardObject.GetComponent<DUnit>();
+        for (int i = 0; i < unit.funct.numerator.Length; i++)
+        {
+            num.text += unit.funct.numerator[i] + " ";
+        }
+        for (int i = 0; i < unit.funct.denumerator.Length; i++)
+        {
+            denum.text += unit.funct.denumerator[i] + " ";
+        }
+
+        if (unit.funct is ZForm)
+        {
+            check.isOn = true;
+            //inputDt.GetComponent<InputField>().text = ((ZForm)unit.funct).DT.ToString();
+        }
     }
 }

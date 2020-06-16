@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 8401893034633005448}
   m_Layer: 0
   m_Name: ITM11 Variant
-  m_TagString: Untagged
+  m_TagString: Indicator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,8 +98,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2e0c7bbbc0598e49973ea8b42182c96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  min: 0
-  max: 0
   text: {fileID: 3480613311360858772}
 --- !u!114 &3879973636169135666
 MonoBehaviour:
@@ -128,13 +126,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4287271097922525369}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8435419983bc3d848bc42281f0013e7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  min: 0
-  max: 0
   scale: {fileID: 3143144674135984638}
 --- !u!65 &8580286584834109827
 BoxCollider:
@@ -238,7 +234,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 1234
+  m_Text: 
 --- !u!1 &7127967752931451229
 GameObject:
   m_ObjectHideFlags: 0
@@ -308,7 +304,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 1
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0

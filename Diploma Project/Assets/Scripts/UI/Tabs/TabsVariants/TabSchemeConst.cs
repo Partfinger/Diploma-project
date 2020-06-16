@@ -20,6 +20,17 @@ public class TabSchemeConst : TabSchemeObject
         return;
     }
 
+    public override void PrepareToSim()
+    {
+        Constant c = schemeObject.boardObject.GetComponent<Constant>();
+        c.output = c._const;
+    }
+
+    public override void PrepareToStop()
+    {
+        return;
+    }
+
     public override void Save(BinaryWriter writer)
     {
         writer.Write(schemeObject.boardObject.GetComponent<Constant>()._const);

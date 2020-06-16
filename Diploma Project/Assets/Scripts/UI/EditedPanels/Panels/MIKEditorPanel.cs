@@ -75,4 +75,9 @@ public class MIKEditorPanel : EditedPanel
         p.schemeObject.boardObject = entity.gameObject;
         parent.boardObject.GetComponent<MIK51>().controllers.Add(entity);
     }
+
+    public override void Refresh()
+    {
+        throw new NotImplementedException();
+    }
 }

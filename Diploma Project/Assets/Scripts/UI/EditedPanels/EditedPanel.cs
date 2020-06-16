@@ -16,4 +16,6 @@ public abstract class EditedPanel : MonoBehaviour
     {
         return;
     }
+
+    public abstract void Refresh();
 }

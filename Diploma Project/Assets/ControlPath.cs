@@ -53,7 +53,7 @@ public class ControlPath : TabSchemeObject
 
     public override void GetName()
     {
-        title.text = Name + " " + ID;
+
     }
 
     public override void Save(BinaryWriter writer)
@@ -85,6 +85,16 @@ public class ControlPath : TabSchemeObject
     }
 
     public override void LoadInputs(BinaryReader reader)
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void PrepareToSim()
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void PrepareToStop()
     {
         throw new NotImplementedException();
     }

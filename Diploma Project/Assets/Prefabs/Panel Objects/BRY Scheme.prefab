@@ -171,6 +171,8 @@ MonoBehaviour:
   background: {fileID: 8293926750672427766}
   title: {fileID: 8293926750499954791}
   schemeObject: {fileID: 3275958120996388829}
+  EditorObjectID: 0
+  Name: "\u0411\u0420\u0423"
 --- !u!114 &3275958120996388829
 MonoBehaviour:
   m_ObjectHideFlags: 0

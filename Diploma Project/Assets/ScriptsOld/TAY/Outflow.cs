@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using Unity.Jobs;
 using UnityEngine;
 
 public delegate void SimulationUpdate();
@@ -19,7 +21,7 @@ public class Outflow : Unit
     public void Start()
     {
         d = anchor2.localPosition - anchor1.localPosition;
-        SForm.dt = Time.fixedDeltaTime;
+        TransferFunction.dt = Time.fixedDeltaTime;
         Queue<Unit> queue = new Queue<Unit>();
         List<Unit> unitsForUpdate = new List<Unit>();
         for (int i = 0; i < inputs.Count; i++)
@@ -34,6 +36,9 @@ public class Outflow : Unit
         unitsForUpdate.Reverse();
         for (int i = 0; i < unitsForUpdate.Count; i++)
             Step += unitsForUpdate[i].Tick;
+        Indicator[] uns = FindObjectsOfType<Indicator>();
+        for (int i = 0; i < uns.Length; i++)
+            Step += uns[i].Tick;
         ControlLaw.dt = Time.fixedDeltaTime;
         for (int i = 0; i < inputs.Count; i++)
         {
@@ -49,9 +54,26 @@ public class Outflow : Unit
         StartCoroutine(Cycle());
     }
 
+    internal void StopSim()
+    {
+        foreach(Delegate d in Step.GetInvocationList())
+        {
+            Step -= (SimulationUpdate)d;
+        }
+        foreach(LineDrawer drawer in drawers)
+        {
+            drawer.Start();
+        }
+        StopAllCoroutines();
+    }
+
     public override void Tick()
     {
-        throw new System.NotImplementedException();
+    }
+
+    public void StartCoroutineStep()
+    {
+        StartCoroutine(Cycle());
     }
 
     private IEnumerator Cycle()

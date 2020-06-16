@@ -9,16 +9,16 @@ public class IndicatorScale : IndicatorEntity
     Image scale;
     float coeff, min, max;
 
-    private void Start()
+    public override void Perfome(float data)
+    {
+        scale.fillAmount = (data - min) / coeff;
+    }
+
+    public override void SpecStart()
     {
         Indicator indicator = GetComponent<Indicator>();
         min = indicator.min;
         max = indicator.max;
         coeff = max - min;
-    }
-
-    public override void Perfome(ref float data)
-    {
-        scale.fillAmount = (data - min) / coeff;
     }
 }

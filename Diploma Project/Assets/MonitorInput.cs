@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class MonitorInput : TabButton
 {
     public MonitorEditorPanel panel;
 
     SchemeObject input;
-    public Color color;
+    public Image image;
+    public Text text;
 
     public SchemeObject Input
     {

@@ -20,11 +20,28 @@ public class TabSchemeI11 : TabSchemeObject
             DataClass.objectManager.loadIDs.Enqueue(reader.ReadInt32());
             DataClass.objectManager.InputLoader += LoadInputs;
         }
+        schemeObject.boardObject.transform.localPosition = new Vector3(reader.ReadSingle(), reader.ReadSingle(), 0);
     }
 
     public override void LoadInputs(BinaryReader reader)
     {
-        schemeObject.Input = DataClass.objectManager.objects[DataClass.objectManager.loadIDs.Dequeue()].schemeObject;
+        schemeObject.Input =
+            ((TabSchemeObject)DataClass.objectManager.group.tabButtons[
+                DataClass.objectManager.loadIDs.Dequeue()
+                ]).schemeObject;
+    }
+
+    public override void PrepareToSim()
+    {
+        Indicator indicator = (Indicator)schemeObject.boardObject.GetComponent<EntryUnit>();
+        indicator.indicators[0].SpecStart();
+        indicator.indicators[1].SpecStart();
+        indicator.GetComponent<BoxCollider>().enabled = false;
+    }
+
+    public override void PrepareToStop()
+    {
+        schemeObject.boardObject.GetComponent<BoxCollider>().enabled = true;
     }
 
     public override void Save(BinaryWriter writer)
@@ -37,5 +54,7 @@ public class TabSchemeI11 : TabSchemeObject
         {
             writer.Write(GetIDInput());
         }
+        writer.Write(schemeObject.boardObject.transform.localPosition.x);
+        writer.Write(schemeObject.boardObject.transform.localPosition.y);
     }
 }

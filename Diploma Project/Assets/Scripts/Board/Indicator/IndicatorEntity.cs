@@ -5,5 +5,7 @@ using UnityEngine.UI;
 
 public abstract class IndicatorEntity : MonoBehaviour
 {
-    public abstract void Perfome(ref float data);
+    public abstract void SpecStart();
+
+    public abstract void Perfome(float data);
 }
