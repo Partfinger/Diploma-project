@@ -1,0 +1,59 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Display : Unit, IMultiInput, IMinMax, ITickable, IMovable
+{
+    public List<IOutput> inputs = new List<IOutput>();
+    public List<IOutput> Inputs { get { return inputs; } set { inputs = value; } }
+    public float Min { get; set; }
+    public float Max { get; set; }
+
+    public LineDrawer prefabDraver;
+    public List<LineDrawer> drawers = new List<LineDrawer>();
+    public Transform container, anchor1, anchor2;
+
+    // Настройки драверів
+    public int lineCount;
+    public float delta;
+    public float stepX;//, stepY;
+    public float[] points;
+
+    public void AddNew()
+    {
+        LineDrawer newDrawer = Instantiate(prefabDraver, container);
+        newDrawer.color = Color.black;
+        newDrawer.display = this;
+        drawers.Add(newDrawer);
+        inputs.Add(null);
+    }
+
+    public void Tick()
+    {
+        for (int i = 0; i < inputs.Count; i++)
+        {
+            drawers[i].Tick(inputs[i].Output);
+        }
+    }
+
+    public void StartSimulation()
+    {
+        delta = Max - Min;
+        stepX = (anchor2.localPosition.x - anchor1.localPosition.x) / lineCount;
+        points = new float[lineCount];
+        for (int i = 0; i < lineCount; i++)
+        {
+            points[i] = stepX * i;
+        }
+        GetComponent<Collider>().enabled = false;
+        for (int i = 0; i < inputs.Count; i++)
+        {
+            drawers[i].UpdateDisplaySettings();
+        }
+    }
+
+    public void StopSimulation()
+    {
+        GetComponent<Collider>().enabled = true;
+    }
+}

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ControllerPathButton : TabButton
+public class ControllerPathButton : TabItem
 {
     public override void Remove()
     {
