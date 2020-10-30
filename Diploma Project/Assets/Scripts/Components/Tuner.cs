@@ -40,7 +40,7 @@ public class Tuner : MonoBehaviour, IMovable
     {
         var subj = subject as IMinMax;
         delta = subj.Max - subj.Min;
-        transform.rotation = Quaternion.Euler(new Vector3(0, 0, -35 + 290 * ((subject as IOutput).Output / delta)));
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, -35 + 290 * ((subject as IOutputable).Output / delta)));
         GetComponent<Collider>().enabled = true;
     }
 

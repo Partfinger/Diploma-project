@@ -15,8 +15,8 @@ public class TabObjectManager : TabGroup
     Dropdown dropdown;
     [SerializeField]
     Transform stand;
-    [SerializeField]
-    SaveLoadMenu saveLoadMenu;
+    //[SerializeField]
+    //SaveLoadMenu saveLoadMenu;
     [SerializeField]
     EditorProvider editorProvider;
     public Color tabIdle, tabActive;
@@ -44,6 +44,7 @@ public class TabObjectManager : TabGroup
         newObject.unit = newUnit;
         newObject.text.text = newObject.unit.Name;
         newObject.group = this;
+        newUnit.objectButton = newObject;
         dropdown.SetValueWithoutNotify(0);
         OnTabSelected(newObject);
     }

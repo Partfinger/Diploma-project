@@ -45,10 +45,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manager: {fileID: 0}
   EditorPrefabs:
+  - {fileID: 7213690708573195707, guid: e5a5598611c8b7c4cba3f10a9dcb97b4, type: 3}
   - {fileID: 9201268811116112593, guid: 097f4059d08917b43ab6f7702e0529ec, type: 3}
   - {fileID: 5830507526608657255, guid: f32869506be061147bf6bad5b71c0966, type: 3}
   - {fileID: 6496870630809593154, guid: ddec3a2401f14ea45bcd9c5957bce749, type: 3}
-  - {fileID: 6314760535366106587, guid: c8309fc021b04604cb1d27e8a0841728, type: 3}
-  - {fileID: 7729107928439924514, guid: cc76c58af8e745e47b6ca24305415e4f, type: 3}
+  - {fileID: 4046780622269674959, guid: 8c56ae2ea976733488b1facea23ca3b7, type: 3}
+  - {fileID: -7940339222423637602, guid: c8309fc021b04604cb1d27e8a0841728, type: 3}
+  - {fileID: 1752231005589517822, guid: cc76c58af8e745e47b6ca24305415e4f, type: 3}
+  - {fileID: 3877676142267543032, guid: 95fddff3426d03b4f90918fa268c074c, type: 3}
   - {fileID: 7184296044323344514, guid: 59e3431b765b2494f82b1f144ae00ac5, type: 3}
-  colorEditor: {fileID: 0}
+  colorEditor: {fileID: 3555928218649814718, guid: 4231ddbdaeeb78b4e8dbb2df7b3d7441,
+    type: 3}

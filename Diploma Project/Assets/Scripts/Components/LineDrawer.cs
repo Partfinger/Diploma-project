@@ -57,12 +57,14 @@ public class LineDrawer : MonoBehaviour
 
     public void Tick(float input)
     {
-        datas[current] = input / display.delta;
+        if (input > display.max)
+            input = display.max;
+        if (input < display.min)
+            input = display.min;
+        datas[current] = input / display.delta + display.minShift;
         if (current < display.lineCount - 1)
             current++;
         else
-        {
             Array.Copy(datas, 1, datas, 0, datas.Length - 1);
-        }
     }
 }

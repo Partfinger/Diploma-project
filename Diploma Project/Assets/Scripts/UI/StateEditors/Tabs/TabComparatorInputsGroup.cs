@@ -6,19 +6,16 @@ using UnityEngine.UI;
 
 namespace StateEditors
 {
-    public class TabComparatorInputsGroup : TabGroup
+    public class TabComparatorInputsGroup : TabInputsGroup
     {
-        public ComparatorEditor editor;
-        public TabComparatorInput inputPrefab;
-        public RectTransform rect;
-        [SerializeField]
-        int Count { get { return tabItems.Count; } }
+        Comparator comparator;
 
-        internal void Show(Comparator comparator)
+        public override void Show(Unit unit)
         {
-            if (editor.comparator)
+            subject = unit as IMultiInput;
+            if (comparator)
             {
-                if (editor.comparator != comparator)
+                if (comparator != unit as Comparator)
                 {
                     RemoveTabs();
                 }
@@ -27,7 +24,7 @@ namespace StateEditors
                     return;
                 }
             }
-            editor.comparator = comparator;
+            comparator = unit as Comparator;
             for (int i = 0; i < comparator.inputs.Count; i++)
             {
                 AddPrefab();
@@ -35,72 +32,39 @@ namespace StateEditors
             }
         }
 
-        public override void Subscribe(TabItem item)
+        public override void Add()
         {
-            base.Subscribe(item);
-            Add();
-            item.gameObject.transform.SetAsLastSibling();
+            base.AddPrefab();
+            comparator.inputs.Add(null);
+            comparator.types.Add(false);
         }
 
-        public void Add()
-        {
-            TabComparatorInput input = Instantiate(inputPrefab, transform);
-            input.group = this;
-            tabItems.Add(input);
-            editor.comparator.inputs.Add(null);
-            editor.comparator.types.Add(false);
-            LayoutRebuilder.ForceRebuildLayoutImmediate(rect);
-        }
-
-        void AddPrefab()
-        {
-            TabComparatorInput input = Instantiate(inputPrefab, transform);
-            input.group = this;
-            tabItems.Add(input);
-
-            LayoutRebuilder.ForceRebuildLayoutImmediate(rect);
-        }
-
-        void UpdateData(int index)
+        protected override void UpdateData(int index)
         {
             TabComparatorInput input = (TabComparatorInput)tabItems[index];
-            input.SetType(editor.comparator.types[index]);
-            if (editor.comparator.inputs[index] != null)
-                input.SetInput(((Unit)editor.comparator.inputs[index]).Name);
+            input.SetType(comparator.types[index]);
+            if (comparator.inputs[index] != null)
+                input.SetInput(((Unit)comparator.inputs[index]).Name);
         }
 
         public override void Remove(TabItem item)
         {
             int index = tabItems.IndexOf(item);
-            editor.comparator.inputs.RemoveAt(index);
-            editor.comparator.types.RemoveAt(index);
+            comparator.inputs.RemoveAt(index);
+            comparator.types.RemoveAt(index);
             tabItems.RemoveAt(index);
-        }
-
-        public override void Remove()
-        {
-            int index = tabItems.IndexOf(active);
-            editor.comparator.inputs.RemoveAt(index);
-            editor.comparator.types.RemoveAt(index);
-            tabItems.RemoveAt(index);
-        }
-
-        public void SetInput(TabComparatorInput item, TabObject tabObject)
-        {
-            int index = tabItems.IndexOf(item);
-            editor.comparator.inputs[index] = ((IOutput)tabObject.unit);
         }
 
         public void SetInputType(TabComparatorInput item)
         {
             int index = tabItems.IndexOf(item);
-            editor.comparator.types[index] = !editor.comparator.types[index];
+            comparator.types[index] = !comparator.types[index];
         }
 
         public void SetInputType(TabComparatorInput item, bool newType)
         {
             int index = tabItems.IndexOf(item);
-            editor.comparator.types[index] = newType;
+            comparator.types[index] = newType;
         }
     }
 }

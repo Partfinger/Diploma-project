@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class DynamicUnit : Unit, ISaveable, IOutput, IInput, ITickable, IMovable
+public class DynamicUnit : Unit, ISaveable, IOutputable, IInputable, ITickable, IMovable
 {
     public TransferFunction function;
     [SerializeField]
@@ -15,9 +15,13 @@ public class DynamicUnit : Unit, ISaveable, IOutput, IInput, ITickable, IMovable
         {
             return output;
         }
+        set
+        {
+            output = value;
+        }
     }
 
-    public IOutput Input { get; set; }
+    public IOutputable Input { get; set; }
 
     public void Load(BinaryReader reader)
     {

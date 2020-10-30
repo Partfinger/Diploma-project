@@ -44,7 +44,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   editors:
+  - NameEditor
   - ComparatorEditor
-  Name: "\u041A\u043E\u043C\u043F\u0430\u0440\u0430\u0442\u043E\u0440"
+  unitName: "\u041A\u043E\u043C\u043F\u0430\u0440\u0430\u0442\u043E\u0440"
+  objectButton: {fileID: 0}
   types: 
   output: 0

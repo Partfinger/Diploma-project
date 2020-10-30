@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Display : Unit, IMultiInput, IMinMax, ITickable, IMovable
 {
-    public List<IOutput> inputs = new List<IOutput>();
-    public List<IOutput> Inputs { get { return inputs; } set { inputs = value; } }
-    public float Min { get; set; }
-    public float Max { get; set; }
+    List<IOutputable> inputs = new List<IOutputable>();
+    public List<IOutputable> Inputs { get { return inputs; } set { inputs = value; } }
+    public float Min { get { return min; } set { min = value; } }
+    public float Max { get { return max; } set { max = value; } }
+
+    public float minShift, min, max;
 
     public LineDrawer prefabDraver;
     public List<LineDrawer> drawers = new List<LineDrawer>();
@@ -38,8 +40,9 @@ public class Display : Unit, IMultiInput, IMinMax, ITickable, IMovable
 
     public void StartSimulation()
     {
-        delta = Max - Min;
+        delta = max - min;
         stepX = (anchor2.localPosition.x - anchor1.localPosition.x) / lineCount;
+        minShift = Mathf.Abs(min / delta);
         points = new float[lineCount];
         for (int i = 0; i < lineCount; i++)
         {

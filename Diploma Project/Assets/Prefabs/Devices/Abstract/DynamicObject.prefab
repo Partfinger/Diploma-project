@@ -45,9 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   editors:
+  - NameEditor
   - SingleInputEditor
   - DynamicObjectEditor
-  Name: "\u0414\u0438\u043D\u0430\u043C\u0456\u0447\u043D\u0430 \u043B\u0430\u043D\u043A\u0430"
+  unitName: "\u0414\u0438\u043D\u0430\u043C\u0456\u0447\u043D\u0430 \u043B\u0430\u043D\u043A\u0430"
+  objectButton: {fileID: 0}
   function: {fileID: 7048667957249128711}
   output: 0
 --- !u!114 &7048667957249128711

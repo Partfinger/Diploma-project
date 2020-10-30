@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IndicatorDevice : Unit, IInput, ITickable, IMinMax, IMovable
+public class IndicatorDevice : Unit, IInputable, ITickable, IMinMax, IMovable
 {
-    IOutput input;
-    public IOutput Input
+    IOutputable input;
+    public IOutputable Input
     {
         get
         {

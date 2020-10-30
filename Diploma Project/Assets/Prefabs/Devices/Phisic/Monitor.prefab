@@ -59,7 +59,6 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -84,7 +83,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &-7311903495087954026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,21 +121,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   editors:
+  - NameEditor
   - MinMaxEditor
-  - DisplayInputsEditor
-  Name: "\u0414\u0438\u0441\u043F\u043B\u0435\u0439"
+  - DisplayEditor
+  unitName: "\u0414\u0438\u0441\u043F\u043B\u0435\u0439"
+  objectButton: {fileID: 0}
   prefabDraver: {fileID: 2088679933210755845, guid: 396f4dead329f1448975c12e9753fb06,
     type: 3}
   drawers: []
-  colors: []
   container: {fileID: 89363753149483455}
   anchor1: {fileID: 7693853261769545154}
   anchor2: {fileID: 1462920179576441055}
-  d: {x: 0, y: 0, z: 0}
   lineCount: 1000
   delta: 0
   stepX: 0
-  stepY: 0
+  points: []
 --- !u!1 &3168088537474189628
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,7 +254,6 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -281,7 +278,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &6389329066074394766
 BoxCollider:
   m_ObjectHideFlags: 0

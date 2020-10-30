@@ -7,12 +7,12 @@ namespace StateEditors
 {
     public class SingleInputEditor : StateEditor, IInputEditor
     {
-        IInput subject;
+        IInputable subject;
         public Text text;
 
         public override void Show(Unit unit)
         {
-            subject = unit as IInput;
+            subject = unit as IInputable;
             gameObject.SetActive(true);
             if (subject.Input != null) 
                 text.text = ((Unit)subject.Input).Name;
@@ -20,7 +20,7 @@ namespace StateEditors
 
         public void AddInput(TabObject @object)
         {
-            subject.Input = (IOutput)@object.unit;
+            subject.Input = (IOutputable)@object.unit;
             text.text = @object.unit.Name;
         }
     }

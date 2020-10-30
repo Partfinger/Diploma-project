@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class EditorProvider : MonoBehaviour
 {
-    public EditorPanelManager manager;
+    public Transform manager;
 
     public List<StateEditor> EditorPrefabs;
 
@@ -33,7 +33,14 @@ public class EditorProvider : MonoBehaviour
 
     public StateEditor Get(string key)
     {
-        return editors[key];
+        try
+        {
+            return editors[key];
+        }
+        catch
+        {
+            throw new Exception($"There is not this key: {key}");
+        }
     }
 
     public void HideEditors()

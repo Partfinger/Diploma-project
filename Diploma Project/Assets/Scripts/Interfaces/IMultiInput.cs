@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IMultiInput
 {
-    List<IOutput> Inputs { get; set; }
+    List<IOutputable> Inputs { get; set; }
 }

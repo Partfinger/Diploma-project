@@ -1,23 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
-using System.Linq;
 using UnityEngine;
 
-public class Comparator : Unit, ISaveable, IOutput, IMultiInput, ITickable
+public class Comparator : Unit, ISaveable, IOutputable, IMultiInput, ITickable
 {
-    public List<IOutput> inputs = new List<IOutput>();
+    public List<IOutputable> inputs = new List<IOutputable>();
     public List<bool> types = new List<bool>();
     [SerializeField]
     float output;
 
-    public List<IOutput> Inputs
+    public List<IOutputable> Inputs
     {
         get { return inputs; }
         set { inputs = value; }
     }
 
-    public float Output { get { return output; } }
+    public float Output { get { return output; } set { output = value; } }
 
     public void Load(BinaryReader reader)
     {

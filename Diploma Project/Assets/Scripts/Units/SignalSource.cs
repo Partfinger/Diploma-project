@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class SignalSource : Unit, IOutput, IMinMax, IStartValue, ISaveable, ITunable, IMovable
+public class SignalSource : Unit, IOutputable, IMinMax, IStartValue, ISaveable, ITunable, IMovable
 {
     [SerializeField]
     float output, min, max, start;
-    public float Output { get => output; }
+    public float Output { get => output; set { output = value; } }
     public float Min 
     {
         get { return min; }
