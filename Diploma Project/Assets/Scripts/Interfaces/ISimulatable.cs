@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IMovable
+public interface ISimulatable
 {
     void StartSimulation();
     void StopSimulation();

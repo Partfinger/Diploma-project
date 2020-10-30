@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Display : Unit, IMultiInput, IMinMax, ITickable, IMovable
+public class Display : Unit, IMultiInput, IMinMax, ITickable, ISimulatable
 {
     List<IOutputable> inputs = new List<IOutputable>();
     public List<IOutputable> Inputs { get { return inputs; } set { inputs = value; } }
@@ -40,6 +40,7 @@ public class Display : Unit, IMultiInput, IMinMax, ITickable, IMovable
 
     public void StartSimulation()
     {
+        GetComponent<Collider>().enabled = false;
         delta = max - min;
         stepX = (anchor2.localPosition.x - anchor1.localPosition.x) / lineCount;
         minShift = Mathf.Abs(min / delta);
@@ -48,7 +49,6 @@ public class Display : Unit, IMultiInput, IMinMax, ITickable, IMovable
         {
             points[i] = stepX * i;
         }
-        GetComponent<Collider>().enabled = false;
         for (int i = 0; i < inputs.Count; i++)
         {
             drawers[i].UpdateDisplaySettings();
@@ -58,5 +58,12 @@ public class Display : Unit, IMultiInput, IMinMax, ITickable, IMovable
     public void StopSimulation()
     {
         GetComponent<Collider>().enabled = true;
+    }
+
+    public override void Validate(List<string> logger)
+    {
+        for (int index = 0; index < inputs.Count; index++)
+            if (inputs[index] == null)
+                logger.Add($"Не призначений вхід №{index} для {Name}");
     }
 }

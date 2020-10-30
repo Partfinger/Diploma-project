@@ -1,22 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 
 public class SimulationManager : MonoBehaviour
 {
     List<ITickable> tickableUnits;
-    List<IMovable> movables;
+    List<ISimulatable> movables;
     Unit[] allUnits;
     delegate void GlobalTick();
     event GlobalTick ticker;
+    List<string> logger;
 
     public GameObject start, stop;
 
     public void ClickStart()
     {
-        start.SetActive(false);
-        stop.SetActive(true);
         StartSimulation();
     }
 
@@ -30,9 +30,35 @@ public class SimulationManager : MonoBehaviour
     public void StartSimulation()
     {
         allUnits = FindObjectsOfType<Unit>();
-        FindMovable();
-        FindTickable();
-        StartCoroutine(GlobalTicker());
+        if (Validate())
+        {
+            FindMovable();
+            FindTickable();
+            StartCoroutine(GlobalTicker());
+            start.SetActive(false);
+            stop.SetActive(true);
+        }
+    }
+
+    private bool Validate()
+    {
+        logger = new List<string>();
+        foreach (Unit unit in allUnits)
+        {
+            unit.Validate(logger);
+        }
+        if (logger.Count > 0)
+        {
+            PrintLog();
+            return false;
+        }
+        return true;
+    }
+
+    void PrintLog()
+    {
+        foreach (string line in logger)
+            Debug.Log(line);
     }
 
     private IEnumerator GlobalTicker()
@@ -51,7 +77,7 @@ public class SimulationManager : MonoBehaviour
         {
             ticker -= subject.Tick;
         }
-        foreach (IMovable movable in movables)
+        foreach (ISimulatable movable in movables)
         {
             movable.StopSimulation();
         }
@@ -72,13 +98,13 @@ public class SimulationManager : MonoBehaviour
 
     void FindMovable()
     {
-        movables = new List<IMovable>();
+        movables = new List<ISimulatable>();
         for (int i = 0; i < allUnits.Length; i++)
         {
-            if (allUnits[i] is IMovable)
+            if (allUnits[i] is ISimulatable)
             {
-                (allUnits[i] as IMovable).StartSimulation();
-                movables.Add(allUnits[i] as IMovable);
+                (allUnits[i] as ISimulatable).StartSimulation();
+                movables.Add(allUnits[i] as ISimulatable);
             }
         }
         Tuner[] tuners = FindObjectsOfType<Tuner>();

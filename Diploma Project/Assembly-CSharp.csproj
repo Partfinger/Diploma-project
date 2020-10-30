@@ -79,12 +79,12 @@
     <Compile Include="Assets\Scripts\Interfaces\IInputEditor.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IInputable.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IMinMax.cs" />
-    <Compile Include="Assets\Scripts\Interfaces\IMovable.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IMultiInput.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IMultiOutput.cs" />
     <Compile Include="Assets\Scripts\Interfaces\INameable.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IOutputable.cs" />
     <Compile Include="Assets\Scripts\Interfaces\ISaveable.cs" />
+    <Compile Include="Assets\Scripts\Interfaces\ISimulatable.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IStartValue.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IStopable.cs" />
     <Compile Include="Assets\Scripts\Interfaces\ITickable.cs" />

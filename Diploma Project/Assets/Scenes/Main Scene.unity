@@ -5169,6 +5169,7 @@ MonoBehaviour:
   - {fileID: 2220161606106312170, guid: 7b18a5b44918824489f5455aa7e89d73, type: 3}
   - {fileID: 723104522200491167, guid: d9c9702fe3912534d9c80c967648024d, type: 3}
   - {fileID: 6120546812313259150, guid: bfee3fbabe94954418f6b4a3f6544a20, type: 3}
+  - {fileID: 4515683954137806082, guid: be2a001a141bfc44aab82bea5c188f8f, type: 3}
   buttonPrefab: {fileID: 3841026843688604253, guid: 724f55f7ce0a96748a607c5565f19f25,
     type: 3}
   rect: {fileID: 1400337828}

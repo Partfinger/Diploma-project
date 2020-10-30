@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IndicatorDevice : Unit, IInputable, ITickable, IMinMax, IMovable
+public class IndicatorDevice : Unit, IInputable, ITickable, IMinMax, ISimulatable
 {
     IOutputable input;
     public IOutputable Input
@@ -32,6 +32,7 @@ public class IndicatorDevice : Unit, IInputable, ITickable, IMinMax, IMovable
 
     public void StartSimulation()
     {
+        GetComponent<Collider>().enabled = false;
         for (int i = 0; i < indicators.Length; i++)
         {
             indicators[i].Prepare();
@@ -40,6 +41,21 @@ public class IndicatorDevice : Unit, IInputable, ITickable, IMinMax, IMovable
 
     public void StopSimulation()
     {
-        return;
+        GetComponent<Collider>().enabled = true;
+    }
+
+    public override void Validate(List<string> logger)
+    {
+        if (Input == null)
+            logger.Add($"Не призначений вхід для {Name}");
+
+        if (Max < Min)
+        {
+            logger.Add($"Для {Name} значення max менше ніж min!");
+        }
+        else if (Max == Min)
+        {
+            logger.Add($"Для {Name} min і max мають однакові значення!");
+        }
     }
 }

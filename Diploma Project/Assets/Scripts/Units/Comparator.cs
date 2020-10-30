@@ -4,7 +4,7 @@ using System.Configuration;
 using System.IO;
 using UnityEngine;
 
-public class Comparator : Unit, ISaveable, IOutputable, IMultiInput, ITickable
+public class Comparator : Unit, IOutputable, IMultiInput, ITickable
 {
     public List<IOutputable> inputs = new List<IOutputable>();
     public List<bool> types = new List<bool>();
@@ -19,16 +19,6 @@ public class Comparator : Unit, ISaveable, IOutputable, IMultiInput, ITickable
 
     public float Output { get { return output; } set { output = value; } }
 
-    public void Load(BinaryReader reader)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void Save(BinaryWriter writer)
-    {
-        throw new System.NotImplementedException();
-    }
-
     public void Tick()
     {
         output = 0;
@@ -39,5 +29,12 @@ public class Comparator : Unit, ISaveable, IOutputable, IMultiInput, ITickable
             else
                 output -= inputs[i].Output;
         }
+    }
+
+    public override void Validate(List<string> logger)
+    {
+        for (int index = 0; index < inputs.Count; index++)
+            if (inputs[index] == null)
+                logger.Add($"Не призначений вхід №{index} для {Name}");
     }
 }

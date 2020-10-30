@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class DynamicUnit : Unit, ISaveable, IOutputable, IInputable, ITickable, IMovable
+public class DynamicUnit : Unit, ISaveable, IOutputable, IInputable, ITickable, ISimulatable
 {
     public TransferFunction function;
     [SerializeField]
@@ -46,5 +46,11 @@ public class DynamicUnit : Unit, ISaveable, IOutputable, IInputable, ITickable, 
     public void Tick()
     {
         output = function.Transform(Input.Output);
+    }
+
+    public override void Validate(List<string> logger)
+    {
+        if (Input == null)
+            logger.Add($"Не призначений вхід для {Name}");
     }
 }

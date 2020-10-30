@@ -14,4 +14,16 @@ public class Randomaizer : Unit, IMinMax, IOutputable, ITickable
     {
         output = Random.Range(Min, Max);
     }
+
+    public override void Validate(List<string> logger)
+    {
+        if (Max < Min)
+        {
+            logger.Add($"Для {Name} значення max менше ніж min!");
+        }
+        else if (Max == Min)
+        {
+            logger.Add($"Для {Name} min і max мають однакові значення!");
+        }
+    }
 }

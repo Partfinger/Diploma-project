@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tuner : MonoBehaviour, IMovable
+public class Tuner : MonoBehaviour, ISimulatable
 {
     [SerializeField]
     float delta, current;

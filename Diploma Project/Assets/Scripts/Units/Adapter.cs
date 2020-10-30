@@ -31,4 +31,13 @@ public class Adapter : Unit, IMultiInput, ITickable, IOutputable, ISaveable
     {
         throw new System.NotImplementedException();
     }
+
+    public override void Validate(List<string> logger)
+    {
+        for (int index = 0; index < inputs.Count; index++)
+        {
+            if (inputs[index] == null)
+                logger.Add($"Не призначений вхід №{index} для {Name}");
+        }
+    }
 }

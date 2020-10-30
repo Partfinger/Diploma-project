@@ -5,7 +5,6 @@ using UnityEngine.EventSystems;
 
 public class ObjectMover : MonoBehaviour
 {
-
     private Vector3 screenPoint;
     private Vector3 offset;
 
@@ -13,6 +12,8 @@ public class ObjectMover : MonoBehaviour
     {
         screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
         offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
+        TabObject subj = GetComponent<Unit>().objectButton;
+        subj.group.OnTabSelected(subj);
     }
 
     void OnMouseDrag()

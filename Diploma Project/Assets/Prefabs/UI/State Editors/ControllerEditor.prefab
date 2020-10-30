@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f71918b483943046811ff04d53ffe1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  group: {fileID: 0}
+  group: {fileID: 2878565752938632826}
 --- !u!1 &1241510862511074016
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,6 +141,7 @@ GameObject:
   - component: {fileID: 1241510863566754933}
   - component: {fileID: 5398494719979707821}
   - component: {fileID: 8790212279057200931}
+  - component: {fileID: 2878565752938632826}
   m_Layer: 0
   m_Name: PanelPolinoms
   m_TagString: Untagged
@@ -245,6 +246,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 2
+--- !u!114 &2878565752938632826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1241510863566754891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38beb03e9c4df8a4c8b2c22b3490e004, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tabItems: []
+  active: {fileID: 0}
+  inputPrefab: {fileID: 0}
+  rect: {fileID: 0}
 --- !u!1 &2925973235236428084
 GameObject:
   m_ObjectHideFlags: 0

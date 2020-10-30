@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class SignalSource : Unit, IOutputable, IMinMax, IStartValue, ISaveable, ITunable, IMovable
+public class SignalSource : Unit, IOutputable, IMinMax, IStartValue, ISaveable, ITunable, ISimulatable
 {
     [SerializeField]
     float output, min, max, start;
@@ -54,5 +54,22 @@ public class SignalSource : Unit, IOutputable, IMinMax, IStartValue, ISaveable, 
     public void StopSimulation()
     {
         GetComponent<Collider>().enabled = true;
+    }
+
+    public override void Validate(List<string> logger)
+    {
+        if (max < min)
+        {
+            logger.Add($"Для {Name} значення max менше ніж min!");
+        }
+        else if (max == min)
+        {
+            logger.Add($"Для {Name} min і max мають однакові значення!");
+        }
+
+        if (start > max || start < min)
+        {
+            logger.Add($"Для {Name} стартове значення виходить за межу допустимих значень!");
+        }
     }
 }
