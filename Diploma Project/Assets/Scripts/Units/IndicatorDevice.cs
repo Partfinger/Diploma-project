@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class IndicatorDevice : Unit, IInputable, ITickable, IMinMax, ISimulatable
@@ -57,5 +58,15 @@ public class IndicatorDevice : Unit, IInputable, ITickable, IMinMax, ISimulatabl
         {
             logger.Add($"Для {Name} min і max мають однакові значення!");
         }
+    }
+
+    public override void Save(BinaryWriter writer)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void Load(BinaryReader reader)
+    {
+        throw new System.NotImplementedException();
     }
 }

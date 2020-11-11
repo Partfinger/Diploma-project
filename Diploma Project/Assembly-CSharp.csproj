@@ -99,6 +99,7 @@
     <Compile Include="Assets\Scripts\UI\ColorPicker\ColorPickerEditor.cs" />
     <Compile Include="Assets\Scripts\UI\ColorPicker\HSBColor.cs" />
     <Compile Include="Assets\Scripts\UI\EditorProvider.cs" />
+    <Compile Include="Assets\Scripts\UI\FileMenu.cs" />
     <Compile Include="Assets\Scripts\UI\StateEditors\DynamicObjectEditor.cs" />
     <Compile Include="Assets\Scripts\UI\StateEditors\MinMaxEditor.cs" />
     <Compile Include="Assets\Scripts\UI\StateEditors\MultiInputsEditor.cs" />

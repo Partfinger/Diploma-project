@@ -19,6 +19,16 @@ public class Comparator : Unit, IOutputable, IMultiInput, ITickable
 
     public float Output { get { return output; } set { output = value; } }
 
+    public override void Load(BinaryReader reader)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void Save(BinaryWriter writer)
+    {
+        throw new System.NotImplementedException();
+    }
+
     public void Tick()
     {
         output = 0;

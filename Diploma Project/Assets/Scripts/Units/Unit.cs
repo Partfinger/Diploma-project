@@ -1,4 +1,5 @@
 ﻿using StateEditors;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -13,15 +14,9 @@ public abstract class Unit : MonoBehaviour, INameable, ISaveable
 
     public TabObject objectButton;
 
-    public void Save(BinaryWriter writer)
-    {
-        throw new System.NotImplementedException();
-    }
+    public abstract void Save(BinaryWriter writer);
 
-    public void Load(BinaryReader reader)
-    {
-        throw new System.NotImplementedException();
-    }
+    public abstract void Load(BinaryReader reader);
 
     public void SelectObject()
     {

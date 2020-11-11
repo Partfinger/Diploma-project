@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class Display : Unit, IMultiInput, IMinMax, ITickable, ISimulatable
@@ -65,5 +66,15 @@ public class Display : Unit, IMultiInput, IMinMax, ITickable, ISimulatable
         for (int index = 0; index < inputs.Count; index++)
             if (inputs[index] == null)
                 logger.Add($"Не призначений вхід №{index} для {Name}");
+    }
+
+    public override void Save(BinaryWriter writer)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void Load(BinaryReader reader)
+    {
+        throw new System.NotImplementedException();
     }
 }

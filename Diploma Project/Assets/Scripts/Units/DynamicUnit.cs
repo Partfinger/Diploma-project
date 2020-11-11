@@ -23,12 +23,12 @@ public class DynamicUnit : Unit, ISaveable, IOutputable, IInputable, ITickable, 
 
     public IOutputable Input { get; set; }
 
-    public void Load(BinaryReader reader)
+    public override void Load(BinaryReader reader)
     {
         function.Load(reader);
     }
 
-    public void Save(BinaryWriter writer)
+    public override void Save(BinaryWriter writer)
     {
         function.Save(writer);
     }

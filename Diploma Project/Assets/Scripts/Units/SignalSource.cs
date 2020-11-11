@@ -29,7 +29,7 @@ public class SignalSource : Unit, IOutputable, IMinMax, IStartValue, ISaveable, 
         output = control;
     }
 
-    public void Load(BinaryReader reader)
+    public override void Load(BinaryReader reader)
     {
         min = reader.ReadSingle();
         max = reader.ReadSingle();
@@ -37,7 +37,7 @@ public class SignalSource : Unit, IOutputable, IMinMax, IStartValue, ISaveable, 
         transform.localPosition = new Vector3(reader.ReadSingle(), reader.ReadSingle(), 0);
     }
 
-    public void Save(BinaryWriter writer)
+    public override void Save(BinaryWriter writer)
     {
         writer.Write(min);
         writer.Write(max);

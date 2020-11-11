@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -38,8 +39,7 @@ public class TabObjectManager : TabGroup
     public void AddNewObject(int id)
     {
         id--;
-        TabObject newObject = Instantiate(buttonPrefab, rect);
-        tabItems.Add(newObject);
+        TabObject newObject = AddNewTab();
         Unit newUnit = Instantiate(UnitsPrebList[id], stand);
         newObject.unit = newUnit;
         newObject.text.text = newObject.unit.Name;
@@ -47,6 +47,13 @@ public class TabObjectManager : TabGroup
         newUnit.objectButton = newObject;
         dropdown.SetValueWithoutNotify(0);
         OnTabSelected(newObject);
+    }
+
+    TabObject AddNewTab()
+    {
+        TabObject newObject = Instantiate(buttonPrefab, rect);
+        tabItems.Add(newObject);
+        return newObject;
     }
 
     public override void OnTabSelected(TabItem item)
@@ -70,9 +77,33 @@ public class TabObjectManager : TabGroup
         throw new System.NotImplementedException();
     }
 
+    public override void Remove()
+    {
+        if (active)
+        {
+            tabItems.Remove(active);
+            active.Remove();
+            active = null;
+        }
+    }
+
     public void HanldeDrop(GameObject dropZone)
     {
         dropZone.GetComponentInParent<IInputEditor>().AddInput(captured);
         captured = null;
+    }
+
+    public void Load(BinaryReader reader)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void Save(BinaryWriter writer)
+    {
+        writer.Write(tabItems.Count);
+        for (int i = 0; i < tabItems.Count; i++)
+        {
+
+        }
     }
 }

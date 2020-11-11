@@ -13,6 +13,7 @@ public class TabObject : TabButton, IBeginDragHandler, IEndDragHandler, IDragHan
 
     public override void Remove()
     {
+        Exit();
         Destroy(unit.gameObject);
         Destroy(gameObject);
     }
