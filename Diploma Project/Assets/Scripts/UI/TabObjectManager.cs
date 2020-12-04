@@ -103,7 +103,12 @@ public class TabObjectManager : TabGroup
         writer.Write(tabItems.Count);
         for (int i = 0; i < tabItems.Count; i++)
         {
-
+            Debug.Log(tabItems[i].name.Substring(0, tabItems[i].name.Length - 7));
+            writer.Write(tabItems[i].name.Substring(0, tabItems[i].name.Length - 7));
+        }
+        for (int i = 0; i < tabItems.Count; i++)
+        {
+            ((TabObject)tabItems[i]).unit.Save(writer);
         }
     }
 }

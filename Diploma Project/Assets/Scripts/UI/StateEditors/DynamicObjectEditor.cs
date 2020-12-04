@@ -16,10 +16,9 @@ namespace StateEditors
         public override void Show(Unit unit)
         {
             gameObject.SetActive(true);
-            if (subject)
+            if (subject == unit as DynamicUnit)
             {
-                if (subject == unit as DynamicUnit)
-                    return;
+                return;
             }
             subject = unit as DynamicUnit;
             UpdateInputLines();
@@ -27,6 +26,8 @@ namespace StateEditors
 
         void UpdateInputLines()
         {
+            num.text = "";
+            denum.text = "";
             for (int i = 0; i < subject.function.numerator.Length; i++)
             {
                 num.text += subject.function.numerator[i] + " ";

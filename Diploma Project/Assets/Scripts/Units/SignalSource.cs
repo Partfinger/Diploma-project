@@ -31,6 +31,7 @@ public class SignalSource : Unit, IOutputable, IMinMax, IStartValue, ISaveable, 
 
     public override void Load(BinaryReader reader)
     {
+        Name = reader.ReadString();
         min = reader.ReadSingle();
         max = reader.ReadSingle();
         start = reader.ReadSingle();
@@ -39,6 +40,7 @@ public class SignalSource : Unit, IOutputable, IMinMax, IStartValue, ISaveable, 
 
     public override void Save(BinaryWriter writer)
     {
+        writer.Write(Name);
         writer.Write(min);
         writer.Write(max);
         writer.Write(start);

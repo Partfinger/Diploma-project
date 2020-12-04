@@ -13,17 +13,11 @@ public class TabDisplayInputsGroup : TabInputsGroup, IColorSetable
     public override void Show(Unit _display)
     {
         subject = _display as IMultiInput;
-        if (display)
+        if (display == _display as Display)
         {
-            if (display != _display as Display)
-            {
-                RemoveTabs();
-            }
-            else
-            {
-                return;
-            }
+            return;
         }
+        RemoveTabs();
         display = _display as Display;
         for (int i = 0; i < display.Inputs.Count; i++)
         {

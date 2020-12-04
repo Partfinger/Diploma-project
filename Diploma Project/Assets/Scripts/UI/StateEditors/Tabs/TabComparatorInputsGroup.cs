@@ -13,17 +13,11 @@ namespace StateEditors
         public override void Show(Unit unit)
         {
             subject = unit as IMultiInput;
-            if (comparator)
+            if (comparator == unit as Comparator)
             {
-                if (comparator != unit as Comparator)
-                {
-                    RemoveTabs();
-                }
-                else
-                {
-                    return;
-                }
+                return;
             }
+            RemoveTabs();
             comparator = unit as Comparator;
             for (int i = 0; i < comparator.inputs.Count; i++)
             {

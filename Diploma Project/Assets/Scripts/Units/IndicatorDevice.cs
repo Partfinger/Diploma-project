@@ -62,11 +62,28 @@ public class IndicatorDevice : Unit, IInputable, ITickable, IMinMax, ISimulatabl
 
     public override void Save(BinaryWriter writer)
     {
-        throw new System.NotImplementedException();
+        writer.Write(Name);
+        writer.Write(Min);
+        writer.Write(Max);
+        writer.Write(transform.localPosition.x);
+        writer.Write(transform.localPosition.y);
+
+        if (input != null)
+        {
+            writer.Write(true);
+            writer.Write(((Unit)input).objectButton.GetID());
+        }
+        else
+        {
+            writer.Write(false);
+        }
     }
 
     public override void Load(BinaryReader reader)
     {
-        throw new System.NotImplementedException();
+        Name = reader.ReadString();
+        Min = reader.ReadSingle();
+        Max = reader.ReadSingle();
+        transform.localPosition = new Vector3(reader.ReadSingle(), reader.ReadSingle(), 0);
     }
 }

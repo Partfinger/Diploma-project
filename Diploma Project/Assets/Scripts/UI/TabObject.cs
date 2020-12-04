@@ -18,6 +18,11 @@ public class TabObject : TabButton, IBeginDragHandler, IEndDragHandler, IDragHan
         Destroy(gameObject);
     }
 
+    public int GetID()
+    {
+        return group.tabItems.IndexOf(this);
+    }
+
     public override void Select()
     {
         for (int i = 0; i < unit.editors.Length; i++)
@@ -25,6 +30,7 @@ public class TabObject : TabButton, IBeginDragHandler, IEndDragHandler, IDragHan
             StateEditor editor = provider.Get(unit.editors[i]);
             editor.Show(unit);
         }
+        Debug.Log(GetID());
     }
 
     public override void Exit()

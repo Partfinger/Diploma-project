@@ -9,17 +9,11 @@ public class TabAdapterInputsGroup : TabInputsGroup
     public override void Show(Unit _adapter)
     {
         subject = _adapter as IMultiInput;
-        if (adapter)
+        if (adapter == _adapter as Adapter)
         {
-            if (adapter != _adapter as Adapter)
-            {
-                RemoveTabs();
-            }
-            else
-            {
-                return;
-            }
+            return;
         }
+        RemoveTabs();
         adapter = _adapter as Adapter;
         for (int i = 0; i < adapter.Inputs.Count; i++)
         {

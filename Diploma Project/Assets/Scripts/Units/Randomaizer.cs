@@ -13,12 +13,16 @@ public class Randomaizer : Unit, IMinMax, IOutputable, ITickable
 
     public override void Load(BinaryReader reader)
     {
-        throw new System.NotImplementedException();
+        Name = reader.ReadString();
+        Min = reader.ReadSingle();
+        Max = reader.ReadSingle();
     }
 
     public override void Save(BinaryWriter writer)
     {
-        throw new System.NotImplementedException();
+        writer.Write(Name);
+        writer.Write(Min);
+        writer.Write(Max);
     }
 
     public void Tick()

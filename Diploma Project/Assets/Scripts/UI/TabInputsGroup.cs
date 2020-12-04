@@ -20,7 +20,10 @@ public abstract class TabInputsGroup : TabGroup
     public void SetInput(TabItem item, TabObject tabObject)
     {
         int index = tabItems.IndexOf(item);
-        subject.Inputs[index] = ((IOutputable)tabObject.unit);
+        if (tabObject.unit is IOutputable)
+            subject.Inputs[index] = ((IOutputable)tabObject.unit);
+        else
+            Debug.LogWarning($"{tabObject.unit.Name} is not have output!");
     }
 
     public override void Subscribe(TabItem item)

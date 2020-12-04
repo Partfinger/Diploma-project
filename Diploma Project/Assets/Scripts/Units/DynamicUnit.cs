@@ -25,11 +25,13 @@ public class DynamicUnit : Unit, ISaveable, IOutputable, IInputable, ITickable, 
 
     public override void Load(BinaryReader reader)
     {
+        Name = reader.ReadString();
         function.Load(reader);
     }
 
     public override void Save(BinaryWriter writer)
     {
+        writer.Write(Name);
         function.Save(writer);
     }
 
@@ -52,5 +54,7 @@ public class DynamicUnit : Unit, ISaveable, IOutputable, IInputable, ITickable, 
     {
         if (Input == null)
             logger.Add($"Не призначений вхід для {Name}");
+        if (function.numerator.Length == 0 || function.denumerator.Length == 0)
+            logger.Add($"Не повністю задані параметри для {Name}");
     }
 }

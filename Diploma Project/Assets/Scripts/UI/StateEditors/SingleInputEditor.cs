@@ -14,8 +14,10 @@ namespace StateEditors
         {
             subject = unit as IInputable;
             gameObject.SetActive(true);
-            if (subject.Input != null) 
+            if (subject.Input != null)
                 text.text = ((Unit)subject.Input).Name;
+            else
+                text.text = "Пусто";
         }
 
         public void AddInput(TabObject @object)
